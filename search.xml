@@ -13,9 +13,7 @@
       
       <categories>
           
-          <category> Algorithm </category>
-          
-          <category> 专题 </category>
+          <category> Algorithms </category>
           
       </categories>
       
@@ -23,6 +21,8 @@
         <tags>
             
             <tag> 双指针 </tag>
+            
+            <tag> 专题 </tag>
             
         </tags>
       
@@ -35,23 +35,23 @@
       <link href="/2023/04/05/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/"/>
       <url>/2023/04/05/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/</url>
       
-        <content type="html"><![CDATA[<h1 id="二分查找，-BinarySearch"><a href="#二分查找，-BinarySearch" class="headerlink" title="二分查找， BinarySearch"></a>二分查找， BinarySearch</h1><p>二分查找有两个模板：</p><ol><li><p>左闭右闭</p><ol><li><p>leetcode 704:</p><pre><code class="java">private int binarySearchCloseInterval(int[] nums, int target) {        // 左闭右闭：我们要考虑右区间的数然后和target比较        int left = 0, right = nums.length - 1;        while (left &lt;= right) {            int mid = (left + right) &gt;&gt; 1;            if (nums[mid] &gt; target) {                // 因为接下来要继续判断 left &lt;= right 而 right = mid 一定不为答案                // 但我们的定义又要求 right 是有意义的因此 right = mid - 1                right = mid - 1;            } else if (nums[mid] &lt; target){                left = mid + 1;            } else {                return mid;            }        }        return -1;    }</code></pre></li></ol></li><li><p>左闭右开</p><ol><li><p>leetcode 704:</p><pre><code class="java"> private int binarySearchOpenInterval(int[] nums, int target) {        // 左闭右开：我们无需考虑右区间的数然后和target比较        int left = 0, right = nums.length;        while (left &lt; right) {            int mid = (left + right) &gt;&gt; 1;            if (nums[mid] &gt; target) {                // 此时 我们 用 left &lt; right 保证在下一次不考虑right因此直接用 right = mid 即可                right = mid;            } else if (nums[mid] &lt; target) {                left = mid + 1;            } else {                return mid;            }        }        return -1;  }</code></pre></li></ol><p>两者方法的本质上的差别是要不要考虑右区间:</p><ol><li>若[left, right] 即 left &lt;= right<ol><li>right = nums.length - 1 &lt;- 很好理解，因为right本身在比较之中因此right = nums.length - 1</li><li>right = mid - 1 &lt;- 因为若 nums[mid] &gt; target 也就是说 right 一定不为答案，且在while中我们会考虑right因为它不为答案我们需要考虑其之前的一个数: right = mid - 1;</li></ol></li><li>若[left, right) 即 left &lt; right:<ol><li>right = nums.length, 同理，因为right本身不含在我们的比较计划中，因此right = nums.length即可</li><li>right = mid &lt;- 因为若 nums[mid] &gt; target 也就是说 right 一定不为答案，且在while中我们<strong>不</strong>会考虑right因为它不为答案我们<strong>不</strong>需要考虑其之前的一个数: right = mid;</li></ol></li></ol></li></ol>]]></content>
+        <content type="html"><![CDATA[<h1 id="二分查找，-Binary-Search"><a href="#二分查找，-Binary-Search" class="headerlink" title="二分查找， Binary Search"></a>二分查找， Binary Search</h1><p>二分查找有两个模板：</p><ol><li><p>左闭右闭</p><ol><li><p>leetcode 704:</p><pre><code class="java">private int binarySearchCloseInterval(int[] nums, int target) {        // 左闭右闭：我们要考虑右区间的数然后和target比较        int left = 0, right = nums.length - 1;        while (left &lt;= right) {            int mid = (left + right) &gt;&gt; 1;            if (nums[mid] &gt; target) {                // 因为接下来要继续判断 left &lt;= right 而 right = mid 一定不为答案                // 但我们的定义又要求 right 是有意义的因此 right = mid - 1                right = mid - 1;            } else if (nums[mid] &lt; target){                left = mid + 1;            } else {                return mid;            }        }        return -1;    }</code></pre></li></ol></li><li><p>左闭右开</p><ol><li><p>leetcode 704:</p><pre><code class="java"> private int binarySearchOpenInterval(int[] nums, int target) {        // 左闭右开：我们无需考虑右区间的数然后和target比较        int left = 0, right = nums.length;        while (left &lt; right) {            int mid = (left + right) &gt;&gt; 1;            if (nums[mid] &gt; target) {                // 此时 我们 用 left &lt; right 保证在下一次不考虑right因此直接用 right = mid 即可                right = mid;            } else if (nums[mid] &lt; target) {                left = mid + 1;            } else {                return mid;            }        }        return -1;  }</code></pre></li></ol><p>两者方法的本质上的差别是要不要考虑右区间:</p><ol><li>若[left, right] 即 left &lt;= right<ol><li>right = nums.length - 1 &lt;- 很好理解，因为right本身在比较之中因此right = nums.length - 1</li><li>right = mid - 1 &lt;- 因为若 nums[mid] &gt; target 也就是说 right 一定不为答案，且在while中我们会考虑right因为它不为答案我们需要考虑其之前的一个数: right = mid - 1;</li></ol></li><li>若[left, right) 即 left &lt; right:<ol><li>right = nums.length, 同理，因为right本身不含在我们的比较计划中，因此right = nums.length即可</li><li>right = mid &lt;- 因为若 nums[mid] &gt; target 也就是说 right 一定不为答案，且在while中我们<strong>不</strong>会考虑right因为它不为答案我们<strong>不</strong>需要考虑其之前的一个数: right = mid;</li></ol></li></ol></li></ol>]]></content>
       
       
       <categories>
           
-          <category> Algorithm </category>
-          
-          <category> 专题 </category>
+          <category> Algorithms </category>
           
       </categories>
       
       
         <tags>
             
+            <tag> 专题 </tag>
+            
             <tag> 二分查找 </tag>
             
-            <tag> Binary Search </tag>
+            <tag> BinarySearch </tag>
             
         </tags>
       
@@ -69,9 +69,7 @@
       
       <categories>
           
-          <category> Algorithm </category>
-          
-          <category> 代码随想录 </category>
+          <category> Algorithms </category>
           
       </categories>
       
@@ -80,7 +78,7 @@
             
             <tag> 代码随想录 </tag>
             
-            <tag> Algorithm </tag>
+            <tag> 总汇 </tag>
             
         </tags>
       
