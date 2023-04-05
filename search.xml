@@ -4,6 +4,58 @@
   
     
     <entry>
+      <title>双指针</title>
+      <link href="/2023/04/05/%E5%8F%8C%E6%8C%87%E9%92%88/"/>
+      <url>/2023/04/05/%E5%8F%8C%E6%8C%87%E9%92%88/</url>
+      
+        <content type="html"><![CDATA[<h1 id="双指针"><a href="#双指针" class="headerlink" title="双指针"></a>双指针</h1><h2 id="快慢指针："><a href="#快慢指针：" class="headerlink" title="快慢指针："></a>快慢指针：</h2><p>慢指针用于保存性质，快指针用于探路。[0, 慢指针] 均满足性质</p><p>leetcode 27 移除元素：</p><ul><li>快指针：寻找新数组的元素 ，新数组就是不含有目标元素的数组</li><li>慢指针：指向更新 新数组下标的位置</li></ul><pre><code class="java">public int removeElement(int[] nums, int val) {        // brutal force:       int count = nums.length;       for (int i = 0; i &lt; count; i++) {           if (nums[i] == val) {               for (int j = i + 1; j &lt; count; j++) {                   nums[j - 1] = nums[j];               }               i -= 1;               count--;           }       }       return count;        // fast-slow pointers:        // 快指针：寻找新数组的元素 ，新数组就是不含有目标元素的数组        // 慢指针：指向更新 新数组下标的位置        int fast = 0, slow = 0;        while (fast &lt; nums.length) {            while (fast &lt; nums.length &amp;&amp; nums[fast] == val) {                fast++;            }            if (fast == nums.length) break;            nums[slow] = nums[fast];            fast++;            slow++;        }        return slow;    }</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> Algorithm </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 双指针 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>二分查找</title>
+      <link href="/2023/04/05/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/"/>
+      <url>/2023/04/05/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/</url>
+      
+        <content type="html"><![CDATA[<h1 id="二分查找，-BinarySearch"><a href="#二分查找，-BinarySearch" class="headerlink" title="二分查找， BinarySearch"></a>二分查找， BinarySearch</h1><p>二分查找有两个模板：</p><ol><li><p>左闭右闭</p><ol><li><p>leetcode 704:</p><pre><code class="java">private int binarySearchCloseInterval(int[] nums, int target) {        // 左闭右闭：我们要考虑右区间的数然后和target比较        int left = 0, right = nums.length - 1;        while (left &lt;= right) {            int mid = (left + right) &gt;&gt; 1;            if (nums[mid] &gt; target) {                // 因为接下来要继续判断 left &lt;= right 而 right = mid 一定不为答案                // 但我们的定义又要求 right 是有意义的因此 right = mid - 1                right = mid - 1;            } else if (nums[mid] &lt; target){                left = mid + 1;            } else {                return mid;            }        }        return -1;    }</code></pre></li></ol></li><li><p>左闭右开</p><ol><li><p>leetcode 704:</p><pre><code class="java"> private int binarySearchOpenInterval(int[] nums, int target) {        // 左闭右开：我们无需考虑右区间的数然后和target比较        int left = 0, right = nums.length;        while (left &lt; right) {            int mid = (left + right) &gt;&gt; 1;            if (nums[mid] &gt; target) {                // 此时 我们 用 left &lt; right 保证在下一次不考虑right因此直接用 right = mid 即可                right = mid;            } else if (nums[mid] &lt; target) {                left = mid + 1;            } else {                return mid;            }        }        return -1;  }</code></pre></li></ol><p>两者方法的本质上的差别是要不要考虑右区间:</p><ol><li>若[left, right] 即 left &lt;= right<ol><li>right = nums.length - 1 &lt;- 很好理解，因为right本身在比较之中因此right = nums.length - 1</li><li>right = mid - 1 &lt;- 因为若 nums[mid] &gt; target 也就是说 right 一定不为答案，且在while中我们会考虑right因为它不为答案我们需要考虑其之前的一个数: right = mid - 1;</li></ol></li><li>若[left, right) 即 left &lt; right:<ol><li>right = nums.length, 同理，因为right本身不含在我们的比较计划中，因此right = nums.length即可</li><li>right = mid &lt;- 因为若 nums[mid] &gt; target 也就是说 right 一定不为答案，且在while中我们<strong>不</strong>会考虑right因为它不为答案我们<strong>不</strong>需要考虑其之前的一个数: right = mid;</li></ol></li></ol></li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> Algorithm </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 二分查找 </tag>
+            
+            <tag> Binary Search </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>代码随想录-总汇</title>
       <link href="/2023/04/05/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95-%E6%80%BB%E6%B1%87/"/>
       <url>/2023/04/05/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95-%E6%80%BB%E6%B1%87/</url>

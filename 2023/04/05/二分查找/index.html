@@ -1,0 +1,85 @@
+<!DOCTYPE html><html class="appearance-auto" lang="en"><head><meta charset="UTF-8"><title>二分查找</title><meta name="description" content="A Master's Student at CMU"><meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, initial-scale=1"><!-- Google Analytics --><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q || []).push(arguments)},i[r].l=1 * new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'G-54HWWM1WE5', 'ruobingw.com');
+ga('send', 'pageview');</script><!-- End Google Analytics -->
+<!-- Baidu Analytics --><!-- End Baidu Analytics --><link rel="icon" href="/images/logo.ico"><link rel="stylesheet" href="/style/common/bulma.css"><link rel="stylesheet" href="/style/base.css"><link rel="stylesheet" href="/style/common/helper.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css" integrity="sha384-KyZXEAg3QhqLMpG8r+Knujsl7/1v5yh/7EE4w4pjkroSTp7t4DOv9lwM6Fmr6H7/" crossorigin="anonymous"><script src="/js/common.js"></script><link rel="stylesheet" href="/style/post.css"><link rel="stylesheet" href="/style/themes/highlight-theme-light.css"><link rel="stylesheet" href="/style/common/jquery.fancybox.min.css"><script src="/js/highlight.pack.js"></script><meta name="description" content="二分查找， BinarySearch二分查找有两个模板：
+
+左闭右闭
+
+leetcode 704:
+private int binarySearchCloseInterval(int[] nums, int target) {
+        // 左闭右闭：我们要考虑右区间的数然后和target比较
+        int left = 0, right = nums.length - 1;
+        while (left &amp;lt;= right) {
+            int mid = (left + right) &amp;gt;&amp;gt; 1;
+            if (nums[mid] &amp;gt; target) {
+                // 因为接下来要继续判断 left.."><meta name="generator" content="Hexo 6.3.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+</head><body class="is-flex is-flex-direction-column"><header class="header-widget is-flex-shrink-0 is-hidden-mobile"><div class="container is-fullhd is-flex is-justify-content-space-between is-align-items-center is-full-height"><section class="is-hidden-mobile is-flex-shrink-0"><h2><a href="/">Ruobing (Robin) Wang's blog</a></h2></section><h3 class="is-hidden-mobile is-family-serif is-full-height is-flex is-align-items-center is-flex-shrink-0"><div class="is-full-height" id="postTopic"><p class="is-full-height is-flex-shrink-0 is-flex is-align-items-center is-justify-content-center">二分查找</p><p class="is-full-height is-flex-shrink-0 is-flex is-align-items-center is-justify-content-center">Click back to the top</p></div></h3><aside class="is-flex-shrink-0"><h3 class="is-inline-block"><a href="/">Home</a></h3><h3 class="is-inline-block"><a href="/about">About</a></h3><h3 class="is-inline-block"><a href="/archives">Archives</a></h3></aside></div></header><header class="is-flex header-widget is-flex-shrink-0 is-align-items-center is-justify-content-center is-hidden-tablet"><h3 class="is-inline-block"><a href="/">Home</a></h3><h3 class="is-inline-block"><a href="/about">About</a></h3><h3 class="is-inline-block"><a href="/archives">Archives</a></h3></header><main><main class="container is-max-widescreen content section post-page pt-4 px-4"><div class="columns is-flex-desktop is-justify-content-center is-flex-direction-row-reverse"><div class="column is-3 is-hidden-mobile"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%EF%BC%8C-BinarySearch"><span class="toc-text">二分查找， BinarySearch</span></a></li></ol></div><div class="column is-9"><header class="my-4"><a href="/tags/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE"><i class="tag post-item-tag">二分查找</i></a><a href="/tags/Binary%20Search"><i class="tag post-item-tag">Binary Search</i></a></header><h1 class="mt-0 mb-1 is-family-serif" id="postTitle">二分查找</h1><time class="has-text-grey" datetime="2023-04-05T06:39:29.000Z">2023-04-05</time><article class="mt-2 post-content"><h1 id="二分查找，-BinarySearch"><a href="#二分查找，-BinarySearch" class="headerlink" title="二分查找， BinarySearch"></a>二分查找， BinarySearch</h1><p>二分查找有两个模板：</p>
+<ol>
+<li><p>左闭右闭</p>
+<ol>
+<li><p>leetcode 704:</p>
+<pre><code class="java">private int binarySearchCloseInterval(int[] nums, int target) {
+        // 左闭右闭：我们要考虑右区间的数然后和target比较
+        int left = 0, right = nums.length - 1;
+        while (left &lt;= right) {
+            int mid = (left + right) &gt;&gt; 1;
+            if (nums[mid] &gt; target) {
+                // 因为接下来要继续判断 left &lt;= right 而 right = mid 一定不为答案
+                // 但我们的定义又要求 right 是有意义的因此 right = mid - 1
+                right = mid - 1;
+            } else if (nums[mid] &lt; target){
+                left = mid + 1;
+            } else {
+                return mid;
+            }
+        }
+        return -1;
+    }
+</code></pre>
+</li>
+</ol>
+</li>
+<li><p>左闭右开</p>
+<ol>
+<li><p>leetcode 704:</p>
+<pre><code class="java"> private int binarySearchOpenInterval(int[] nums, int target) {
+        // 左闭右开：我们无需考虑右区间的数然后和target比较
+        int left = 0, right = nums.length;
+        while (left &lt; right) {
+            int mid = (left + right) &gt;&gt; 1;
+            if (nums[mid] &gt; target) {
+                // 此时 我们 用 left &lt; right 保证在下一次不考虑right因此直接用 right = mid 即可
+                right = mid;
+            } else if (nums[mid] &lt; target) {
+                left = mid + 1;
+            } else {
+                return mid;
+            }
+        }
+        return -1;
+  }
+</code></pre>
+</li>
+</ol>
+<p>两者方法的本质上的差别是要不要考虑右区间:</p>
+<ol>
+<li>若[left, right] 即 left &lt;= right<ol>
+<li>right = nums.length - 1 &lt;- 很好理解，因为right本身在比较之中因此right = nums.length - 1</li>
+<li>right = mid - 1 &lt;- 因为若 nums[mid] &gt; target 也就是说 right 一定不为答案，且在while中我们会考虑right因为它不为答案我们需要考虑其之前的一个数: right = mid - 1;</li>
+</ol>
+</li>
+<li>若[left, right) 即 left &lt; right:<ol>
+<li>right = nums.length, 同理，因为right本身不含在我们的比较计划中，因此right = nums.length即可</li>
+<li>right = mid &lt;- 因为若 nums[mid] &gt; target 也就是说 right 一定不为答案，且在while中我们<strong>不</strong>会考虑right因为它不为答案我们<strong>不</strong>需要考虑其之前的一个数: right = mid;</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</article><section class="jump-container is-flex is-justify-content-space-between my-6"><!-- em is empty placeholder--><a class="button is-default" href="/2023/04/05/%E5%8F%8C%E6%8C%87%E9%92%88/" title="双指针"><i class="iconfont icon-prev mr-2 has-text-grey"></i><span class="has-text-weight-semibold">Previous: 双指针</span></a><a class="button is-default" href="/2023/04/05/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95-%E6%80%BB%E6%B1%87/" title="代码随想录-总汇"><span class="has-text-weight-semibold">Next: 代码随想录-总汇</span><i class="iconfont icon-next ml-2 has-text-grey"></i></a></section></div></div></main></main><footer class="is-flex is-flex-direction-column is-align-items-center is-flex-shrink-0 is-family-serif"><section class="sns-container"><!-- Github--><a title="github" target="_blank" rel="noopener nofollow" href="//github.com/ruobing1997"><i class="iconfont icon-github"></i></a><!-- Ins--><a title="instagram" target="_blank" rel="noopener nofollow" href="//www.instagram.com/ruobingwang123"><i class="iconfont icon-ins"></i></a><!-- RSS--><!-- 知乎--><!-- 领英--><a title="linkedin" target="_blank" rel="noopener nofollow" href="//www.linkedin.com/in/ruobing97"><i class="iconfont icon-linkedin"></i></a><!-- 脸书--></section><p><span>Copyright ©</span><span> Ruobing (Robin) Wang 2023</span></p></footer><script async defer src="https://buttons.github.io/buttons.js"></script><script src="/js/jquery-3.6.1.min.js"></script><script src="/js/jquery-fancybox.min.js"></script><script src="/js/img_zoom.js"></script><script src="/js/post.js"></script></body></html>
