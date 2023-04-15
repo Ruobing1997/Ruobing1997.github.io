@@ -100,9 +100,9 @@
     <category term="Algorithms" scheme="http://ruobingw.com/categories/Algorithms/"/>
     
     
-    <category term="Algorithms" scheme="http://ruobingw.com/tags/Algorithms/"/>
-    
     <category term="哈希表" scheme="http://ruobingw.com/tags/%E5%93%88%E5%B8%8C%E8%A1%A8/"/>
+    
+    <category term="Algorithms" scheme="http://ruobingw.com/tags/Algorithms/"/>
     
   </entry>
   
@@ -146,9 +146,9 @@
     <category term="Algorithms" scheme="http://ruobingw.com/categories/Algorithms/"/>
     
     
-    <category term="专题" scheme="http://ruobingw.com/tags/%E4%B8%93%E9%A2%98/"/>
-    
     <category term="Algorithms" scheme="http://ruobingw.com/tags/Algorithms/"/>
+    
+    <category term="专题" scheme="http://ruobingw.com/tags/%E4%B8%93%E9%A2%98/"/>
     
     <category term="双指针" scheme="http://ruobingw.com/tags/%E5%8F%8C%E6%8C%87%E9%92%88/"/>
     
@@ -171,11 +171,11 @@
     <category term="Algorithms" scheme="http://ruobingw.com/categories/Algorithms/"/>
     
     
+    <category term="Algorithms" scheme="http://ruobingw.com/tags/Algorithms/"/>
+    
     <category term="专题" scheme="http://ruobingw.com/tags/%E4%B8%93%E9%A2%98/"/>
     
     <category term="二分查找" scheme="http://ruobingw.com/tags/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/"/>
-    
-    <category term="Algorithms" scheme="http://ruobingw.com/tags/Algorithms/"/>
     
   </entry>
   
