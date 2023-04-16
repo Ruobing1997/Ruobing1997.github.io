@@ -6,7 +6,7 @@
   <link href="http://ruobingw.com/atom.xml" rel="self"/>
   
   <link href="http://ruobingw.com/"/>
-  <updated>2023-04-16T13:24:32.225Z</updated>
+  <updated>2023-04-16T13:29:26.983Z</updated>
   <id>http://ruobingw.com/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://ruobingw.com/2023/04/15/Java%E7%A2%8E%E7%A2%8E%E5%BF%B5/"/>
     <id>http://ruobingw.com/2023/04/15/Java%E7%A2%8E%E7%A2%8E%E5%BF%B5/</id>
     <published>2023-04-15T15:33:13.000Z</published>
-    <updated>2023-04-16T13:24:32.225Z</updated>
+    <updated>2023-04-16T13:29:26.983Z</updated>
     
     <content type="html"><![CDATA[<div class="note blue icon-padding flat"><i class="note-icon fas fa-bullhorn"></i><p>收集些容易忽视的Java的用法</p></div><h1 id="Java"><a href="#Java" class="headerlink" title="Java"></a>Java</h1><h2 id="Collections-Interface"><a href="#Collections-Interface" class="headerlink" title="Collections Interface"></a>Collections Interface</h2><p><img src="/2023/04/15/Java%E7%A2%8E%E7%A2%8E%E5%BF%B5/Collections-in-Java.png" alt="Collections Interface"></p><h3 id="List"><a href="#List" class="headerlink" title="List"></a>List</h3><h4 id="ArrayList"><a href="#ArrayList" class="headerlink" title="ArrayList"></a>ArrayList</h4><h4 id="LinkedList"><a href="#LinkedList" class="headerlink" title="LinkedList"></a>LinkedList</h4><p>LinkedList Methods:</p><table><thead><tr><th>Methods</th><th>Description</th></tr></thead><tbody><tr><td>addFirst()</td><td>Adds an item to the beginning of the list.</td></tr><tr><td>addLast()</td><td>Add an item to the end of the list</td></tr><tr><td>removeFirst()</td><td>Remove an item from the beginning of the list.</td></tr><tr><td>removeLast()</td><td>Remove an item from the end of the list</td></tr><tr><td>getFirst()</td><td>Get the item at the beginning of the list</td></tr><tr><td>getLast()</td><td>Get the item at the end of the list</td></tr></tbody></table>]]></content>
     
