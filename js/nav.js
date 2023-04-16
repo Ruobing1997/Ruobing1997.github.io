@@ -8,7 +8,7 @@ var position = $(window).scrollTop();
 $(window).scroll(function () {
   var scroll = $(window).scrollTop();
 
-  if (scroll &gt; position) {
+  if (scroll > position) {
     document.getElementById("name-container").setAttribute("style", "");
     document.getElementsByClassName("menus_items")[1].setAttribute("style", "display:none!important");
 
