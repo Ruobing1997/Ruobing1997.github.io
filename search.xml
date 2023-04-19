@@ -38,8 +38,6 @@
       
       <categories>
           
-          <category> 数据结构 </category>
-          
           <category> Algorithms </category>
           
       </categories>
@@ -48,6 +46,8 @@
         <tags>
             
             <tag> 二叉树 </tag>
+            
+            <tag> 数据结构 </tag>
             
         </tags>
       
@@ -65,14 +65,14 @@
       
       <categories>
           
-          <category> 数据结构 </category>
-          
           <category> Algorithms </category>
           
       </categories>
       
       
         <tags>
+            
+            <tag> 数据结构 </tag>
             
             <tag> 单调队列和单调栈 </tag>
             
@@ -119,12 +119,12 @@
           
           <category> Algorithms </category>
           
-          <category> 数据结构 </category>
-          
       </categories>
       
       
         <tags>
+            
+            <tag> 数据结构 </tag>
             
             <tag> 队列和栈 </tag>
             
@@ -169,14 +169,14 @@
       
       <categories>
           
-          <category> 数据结构 </category>
-          
           <category> Algorithms </category>
           
       </categories>
       
       
         <tags>
+            
+            <tag> 数据结构 </tag>
             
             <tag> 哈希表 </tag>
             
@@ -196,8 +196,6 @@
       
       <categories>
           
-          <category> 数据结构 </category>
-          
           <category> Algorithms </category>
           
       </categories>
@@ -205,9 +203,9 @@
       
         <tags>
             
-            <tag> 链表 </tag>
+            <tag> 数据结构 </tag>
             
-            <tag> Algorithms </tag>
+            <tag> 链表 </tag>
             
         </tags>
       
@@ -274,8 +272,6 @@
       
       
       <categories>
-          
-          <category> 数据结构 </category>
           
           <category> Algorithms </category>
           
