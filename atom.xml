@@ -270,9 +270,9 @@
     
     <category term="二叉树" scheme="http://ruobingw.com/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/"/>
     
-    <category term="二叉搜索树" scheme="http://ruobingw.com/tags/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91/"/>
-    
     <category term="数据结构" scheme="http://ruobingw.com/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    
+    <category term="二叉搜索树" scheme="http://ruobingw.com/tags/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91/"/>
     
   </entry>
   
