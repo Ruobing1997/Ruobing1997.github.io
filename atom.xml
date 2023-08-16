@@ -6,7 +6,7 @@
   <link href="http://ruobingw.com/atom.xml" rel="self"/>
   
   <link href="http://ruobingw.com/"/>
-  <updated>2023-07-22T16:59:47.065Z</updated>
+  <updated>2023-08-16T03:11:08.214Z</updated>
   <id>http://ruobingw.com/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>面试经验集合</title>
+    <link href="http://ruobingw.com/2023/08/16/%E9%9D%A2%E8%AF%95%E7%BB%8F%E9%AA%8C%E9%9B%86%E5%90%88/"/>
+    <id>http://ruobingw.com/2023/08/16/%E9%9D%A2%E8%AF%95%E7%BB%8F%E9%AA%8C%E9%9B%86%E5%90%88/</id>
+    <published>2023-08-16T15:06:02.000Z</published>
+    <updated>2023-08-16T03:11:08.214Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="腾讯"><a href="#腾讯" class="headerlink" title="腾讯"></a>腾讯</h1><h2 id="Java"><a href="#Java" class="headerlink" title="Java"></a>Java</h2><p>集合类</p><ol><li>collection list set queue<br>LinkedList arraylist 区别<br>LinkedBlockingQueue</li><li>Map hashmap linkedhashmap sortMap<br>cuccrenthashmap</li></ol><p>多线程</p><ol><li>用到那些多线程框架<br>newCachedThreadPool newFixedThreadPool newSingleThreadExecutor newScheduleThreadPool</li></ol><p>锁</p><ol><li>synchronized ReentrantLock 区别<br>lock</li><li>公平锁/非公平锁</li><li>可重入锁 synchronized</li><li>独享锁/共享锁</li><li>互斥锁/读写锁 ReentrantLock</li><li>乐观锁/悲观锁 区别？ CAS算法</li><li>分段锁 ConcurrentHashMap</li></ol><p>tpc三次握手和四次挥手</p><p>epoll和select区别</p><p>设计模式<br>主要用到那些<br>Singleton 工厂 代理模式</p><p>spring 中用到的动态代理<br>动态代理实现和种类，区别</p><p>jvm回收，java的类加载机制</p><p>微服务，服务注册发现</p><p>docker k8s</p><p>数据库<br>介绍下sql优化经验<br>数据库有哪些常用的引擎，主要区别，索引的实现原理<br>b数，b+数的区别</p><p>动态内容<br>HA+Nginx<br>mybatis 动态分页组件<br>zookeeper 应用场景，一致性hash运用<br>对java 高并发的rpc框架<br>本地缓存+分布式缓存</p><p>1、关于spring的aop的实现方法<br>2、关于分布式消息队列，分布式缓存<br>3、关于rpc方面<br>4、关于hashmap源码实现<br>5、关于Java异常的续承层次结构，讲述异常的续承关系<br>6、关于https握手过程<br>7、关于java数据库问题定位和性能调优<br>8、关于设计模式，uml，jvm 内存回收机制问题<br>9、java中重载和重写有什么区别？分别用什么关键字？<br>10、java线程如何启动？<br>11、java中加锁的方式有哪些，怎么个写法？<br>12、乐观锁和悲观锁解释一下<br>13、ORACLE中的SQL如何进行优化，都有哪些方式？<br>14、java中类的加载机制<br>15、介绍一下自己最近做的一个典型的项目<br>16、在项目中遇到了哪些问题，自己是如何解决的<br>17、说一下有哪些常用的设计模式<br>18、事务有哪些特性，在ORACLE中隔离有哪些级别<br>19、使用memcached是一个什么样的原理<br>20、如何存放数据到memcached集群中，介绍一下这个过程。跟进的问题，讲一下一致性哈希算法的实现原理。<br>21、JVM中堆是如何管理的，JVM的内存回收机制，介绍一下<br>22、数据库慢查询优化</p><h1 id="Databricks-数据🧱"><a href="#Databricks-数据🧱" class="headerlink" title="Databricks 数据🧱"></a>Databricks 数据🧱</h1>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;腾讯&quot;&gt;&lt;a href=&quot;#腾讯&quot; class=&quot;headerlink&quot; title=&quot;腾讯&quot;&gt;&lt;/a&gt;腾讯&lt;/h1&gt;&lt;h2 id=&quot;Java&quot;&gt;&lt;a href=&quot;#Java&quot; class=&quot;headerlink&quot; title=&quot;Java&quot;&gt;&lt;/a&gt;Java&lt;/h</summary>
+      
+    
+    
+    
+    <category term="面经" scheme="http://ruobingw.com/categories/%E9%9D%A2%E7%BB%8F/"/>
+    
+    
+    <category term="面经" scheme="http://ruobingw.com/tags/%E9%9D%A2%E7%BB%8F/"/>
+    
+  </entry>
   
   <entry>
     <title>背包问题</title>
@@ -432,27 +456,6 @@
     <category term="数据结构" scheme="http://ruobingw.com/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
     
     <category term="单调队列和单调栈" scheme="http://ruobingw.com/tags/%E5%8D%95%E8%B0%83%E9%98%9F%E5%88%97%E5%92%8C%E5%8D%95%E8%B0%83%E6%A0%88/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java碎碎念</title>
-    <link href="http://ruobingw.com/2023/04/15/Java%E7%A2%8E%E7%A2%8E%E5%BF%B5/"/>
-    <id>http://ruobingw.com/2023/04/15/Java%E7%A2%8E%E7%A2%8E%E5%BF%B5/</id>
-    <published>2023-04-15T15:33:13.000Z</published>
-    <updated>2023-04-16T15:26:01.972Z</updated>
-    
-    <content type="html"><![CDATA[<div class="note blue icon-padding flat"><i class="note-icon fas fa-bullhorn"></i><p>收集些容易忽视的Java的用法</p></div><h1 id="Java"><a href="#Java" class="headerlink" title="Java"></a>Java</h1><h2 id="Collections-Interface"><a href="#Collections-Interface" class="headerlink" title="Collections Interface"></a>Collections Interface</h2><p><img src="/2023/04/15/Java%E7%A2%8E%E7%A2%8E%E5%BF%B5/Collections-in-Java.png" alt="Collections Interface"></p><h3 id="List"><a href="#List" class="headerlink" title="List"></a>List</h3><h4 id="ArrayList"><a href="#ArrayList" class="headerlink" title="ArrayList"></a>ArrayList</h4><h4 id="LinkedList"><a href="#LinkedList" class="headerlink" title="LinkedList"></a>LinkedList</h4><p>LinkedList Methods:</p><table><thead><tr><th>Methods</th><th>Description</th></tr></thead><tbody><tr><td>addFirst()</td><td>Adds an item to the beginning of the list.</td></tr><tr><td>addLast()</td><td>Add an item to the end of the list</td></tr><tr><td>removeFirst()</td><td>Remove an item from the beginning of the list.</td></tr><tr><td>removeLast()</td><td>Remove an item from the end of the list</td></tr><tr><td>getFirst()</td><td>Get the item at the beginning of the list</td></tr><tr><td>getLast()</td><td>Get the item at the end of the list</td></tr></tbody></table><h3 id="Deque"><a href="#Deque" class="headerlink" title="Deque"></a>Deque</h3><h4 id="LinkedList-实现"><a href="#LinkedList-实现" class="headerlink" title="LinkedList 实现"></a>LinkedList 实现</h4><h4 id="ArrayDeque-实现"><a href="#ArrayDeque-实现" class="headerlink" title="ArrayDeque 实现"></a>ArrayDeque 实现</h4><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>其实就是array和linkedlist区别，大部分时间里array会比较快。但是当添加元素时超了array的容积，则ArrayDeque需要resize.</p><h2 id="Stream"><a href="#Stream" class="headerlink" title="Stream()"></a>Stream()</h2><ol><li>List to array one line:</li></ol><figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List.stream().mapToInt(i -&gt; i).toArray();</span><br></pre></td></tr></tbody></table></figure><ol start="2"><li>Print elements in an int[]:</li></ol><figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Arrays.stream(ret).forEach(a -&gt; System.out.print(a + <span class="string">" "</span>));</span><br></pre></td></tr></tbody></table></figure><h2 id="Pair"><a href="#Pair" class="headerlink" title="Pair"></a>Pair</h2><figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Pair&lt;Integer, String&gt; pair = <span class="keyword">new</span> <span class="title class_">Pair</span>&lt;&gt;(<span class="number">1</span>, <span class="string">"One"</span>);</span><br><span class="line"><span class="type">Integer</span> <span class="variable">key</span> <span class="operator">=</span> pair.getKey();</span><br><span class="line"><span class="type">String</span> <span class="variable">value</span> <span class="operator">=</span> pair.getValue();</span><br></pre></td></tr></tbody></table></figure>]]></content>
-    
-    
-    <summary type="html">关于Java的一些使用技巧</summary>
-    
-    
-    
-    <category term="Programming-Languages" scheme="http://ruobingw.com/categories/Programming-Languages/"/>
-    
-    
-    <category term="Java" scheme="http://ruobingw.com/tags/Java/"/>
     
   </entry>
   
