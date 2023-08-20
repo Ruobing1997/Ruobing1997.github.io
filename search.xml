@@ -4,6 +4,60 @@
   
     
     <entry>
+      <title>从二叉树到回溯到DP</title>
+      <link href="/2023/08/21/%E4%BB%8E%E4%BA%8C%E5%8F%89%E6%A0%91%E5%88%B0%E5%9B%9E%E6%BA%AF%E5%88%B0DP/"/>
+      <url>/2023/08/21/%E4%BB%8E%E4%BA%8C%E5%8F%89%E6%A0%91%E5%88%B0%E5%9B%9E%E6%BA%AF%E5%88%B0DP/</url>
+      
+        <content type="html"><![CDATA[<h1 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h1><p>暂略，已经练习很多了</p><h1 id="回溯"><a href="#回溯" class="headerlink" title="回溯"></a>回溯</h1><div class="note blue icon-padding flat"><i class="note-icon fas fa-bullhorn"></i><p>主要参考：<br><a href="https://www.bilibili.com/video/BV1mG4y1A7Gu/?spm_id_from=333.788&amp;vd_source=54f34024c3784d45de85a3f70808ab70">灵茶山艾府 - 回溯 - [14 - 16]</a></p></div><h2 id="子集型"><a href="#子集型" class="headerlink" title="子集型"></a>子集型</h2><h2 id="组合型"><a href="#组合型" class="headerlink" title="组合型"></a>组合型</h2><h2 id="排列型"><a href="#排列型" class="headerlink" title="排列型"></a>排列型</h2><h1 id="DP"><a href="#DP" class="headerlink" title="DP"></a>DP</h1><div class="note blue icon-padding flat"><i class="note-icon fas fa-bullhorn"></i><p>主要参考：</p><p>灵茶山艾府：</p><p><a href="https://www.bilibili.com/video/BV1Xj411K7oF/?spm_id_from=333.788&amp;vd_source=54f34024c3784d45de85a3f70808ab70">从记忆化搜索到<strong>递推</strong></a></p><p><a href="https://www.bilibili.com/video/BV1AM4y1x7r4/?spm_id_from=333.999.0.0">选或不选 vs 枚举选哪个</a></p></div>]]></content>
+      
+      
+      <categories>
+          
+          <category> Algorithms </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 二叉树 </tag>
+            
+            <tag> 动态规划 </tag>
+            
+            <tag> dp </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>周赛记录</title>
+      <link href="/2023/08/21/%E5%91%A8%E8%B5%9B%E8%AE%B0%E5%BD%95/"/>
+      <url>/2023/08/21/%E5%91%A8%E8%B5%9B%E8%AE%B0%E5%BD%95/</url>
+      
+        <content type="html"><![CDATA[<div class="note blue icon-padding flat"><i class="note-icon fas fa-bullhorn"></i><p>🐛🦆！（飘了）</p></div><h1 id="第-359-场周赛"><a href="#第-359-场周赛" class="headerlink" title="第 359 场周赛"></a>第 359 场周赛</h1>]]></content>
+      
+      
+      <categories>
+          
+          <category> Algorithms </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 周赛 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>面试经验集合</title>
       <link href="/2023/08/16/%E9%9D%A2%E8%AF%95%E7%BB%8F%E9%AA%8C%E9%9B%86%E5%90%88/"/>
       <url>/2023/08/16/%E9%9D%A2%E8%AF%95%E7%BB%8F%E9%AA%8C%E9%9B%86%E5%90%88/</url>
