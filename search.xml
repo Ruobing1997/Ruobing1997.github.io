@@ -4,6 +4,37 @@
   
     
     <entry>
+      <title>Basic-Calculator-Topics</title>
+      <link href="/2023/10/03/Basic-Calculator-Topics/"/>
+      <url>/2023/10/03/Basic-Calculator-Topics/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p><a href="https://labuladong.github.io/algo/di-san-zha-24031/jing-dian--a94a0/ru-he-shi--24fe4/">Labuladong-实现基础计算器</a></p></blockquote><table><thead><tr><th><a href="https://leetcode.cn/problems/basic-calculator/">224. 基本计算器</a></th></tr></thead><tbody><tr><td><a href="https://leetcode.cn/problems/basic-calculator-ii/">227. 基本计算器 II</a></td></tr><tr><td><a href="https://leetcode.cn/problems/basic-calculator-iii/">772. 基本计算器 III</a></td></tr></tbody></table><p>主要借助栈（加减乘除） + 递归（括号）</p><p>加一个<code>preSign '+'</code></p><p>即：</p><p><code>+</code> <code>-</code> 数 直接入栈</p><p><code>* /</code> 借用栈的性质，将计算结果入栈</p><p><code>(</code> <code>)</code> 使用递归先计算括号内的数，将结果入栈</p><p><img src="/2023/10/03/Basic-Calculator-Topics/Basic-Calculator-push-stack-1.jpeg" alt="Basic-Calculator-push-stack-1"></p><h1 id="227-基本计算器-II"><a href="#227-基本计算器-II" class="headerlink" title="227. 基本计算器 II"></a><a href="https://leetcode.cn/problems/basic-calculator-ii/">227. 基本计算器 II</a></h1><figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> {</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">calculate</span><span class="params">(String s)</span> {</span><br><span class="line">        Stack&lt;Integer&gt; stack = <span class="keyword">new</span> <span class="title class_">Stack</span>&lt;Integer&gt;();</span><br><span class="line">        <span class="type">char</span>[] cArr = s.toCharArray();</span><br><span class="line">        <span class="keyword">if</span> (cArr.length == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="type">char</span> <span class="variable">sign</span> <span class="operator">=</span> <span class="string">'+'</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">num</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; cArr.length;) {</span><br><span class="line">            <span class="keyword">if</span> (Character.isDigit(cArr[i])) {</span><br><span class="line">                num = num * <span class="number">10</span> + (cArr[i] - <span class="string">'0'</span>);</span><br><span class="line">            }</span><br><span class="line">            <span class="keyword">if</span> ((!Character.isDigit(cArr[i]) &amp;&amp; cArr[i] != <span class="string">' '</span>) || i == cArr.length - <span class="number">1</span>) {</span><br><span class="line">                <span class="keyword">if</span> (sign == <span class="string">'+'</span>) {</span><br><span class="line">                    stack.push(num);</span><br><span class="line">                } <span class="keyword">else</span> <span class="keyword">if</span> (sign == <span class="string">'-'</span>) {</span><br><span class="line">                    stack.push(-<span class="number">1</span> * num);</span><br><span class="line">                } <span class="keyword">else</span> <span class="keyword">if</span> (sign == <span class="string">'*'</span>) {</span><br><span class="line">                    <span class="type">int</span> <span class="variable">peek</span> <span class="operator">=</span> stack.pop();</span><br><span class="line">                    stack.push(peek * num);</span><br><span class="line">                } <span class="keyword">else</span> {</span><br><span class="line">                    <span class="type">int</span> <span class="variable">peek</span> <span class="operator">=</span> stack.pop();</span><br><span class="line">                    stack.push(peek / num);</span><br><span class="line">                }</span><br><span class="line">                sign = cArr[i];</span><br><span class="line">                num = <span class="number">0</span>;</span><br><span class="line">            }</span><br><span class="line">            i++;</span><br><span class="line">        }</span><br><span class="line">        <span class="type">int</span> <span class="variable">sum</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (!stack.isEmpty()) {</span><br><span class="line">            sum += stack.pop();</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> sum;</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> Algorithms </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 计算器 </tag>
+            
+            <tag> Basic-Calculator </tag>
+            
+            <tag> Stack </tag>
+            
+            <tag> 数据结构 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>数组</title>
       <link href="/2023/10/01/%E6%95%B0%E7%BB%84/"/>
       <url>/2023/10/01/%E6%95%B0%E7%BB%84/</url>
@@ -72,9 +103,9 @@
       
         <tags>
             
-            <tag> 图论 </tag>
-            
             <tag> 数据结构 </tag>
+            
+            <tag> 图论 </tag>
             
             <tag> 并查集 </tag>
             
@@ -111,9 +142,9 @@
       
         <tags>
             
-            <tag> 图论 </tag>
-            
             <tag> 数据结构 </tag>
+            
+            <tag> 图论 </tag>
             
             <tag> 并查集 </tag>
             
@@ -167,9 +198,9 @@
       
         <tags>
             
-            <tag> 图论 </tag>
-            
             <tag> 数据结构 </tag>
+            
+            <tag> 图论 </tag>
             
             <tag> 邻接表 </tag>
             
@@ -238,7 +269,7 @@
       <link href="/2023/08/16/%E9%9D%A2%E8%AF%95%E7%BB%8F%E9%AA%8C%E9%9B%86%E5%90%88/"/>
       <url>/2023/08/16/%E9%9D%A2%E8%AF%95%E7%BB%8F%E9%AA%8C%E9%9B%86%E5%90%88/</url>
       
-        <content type="html"><![CDATA[<h1 id="腾讯"><a href="#腾讯" class="headerlink" title="腾讯"></a>腾讯</h1><h2 id="Java"><a href="#Java" class="headerlink" title="Java"></a>Java</h2><p>集合类</p><ol><li>collection list set queue<br>LinkedList arraylist 区别<br>LinkedBlockingQueue</li><li>Map hashmap linkedhashmap sortMap<br>cuccrenthashmap</li></ol><p>多线程</p><ol><li>用到那些多线程框架<br>newCachedThreadPool newFixedThreadPool newSingleThreadExecutor newScheduleThreadPool</li></ol><p>锁</p><ol><li>synchronized ReentrantLock 区别<br>lock</li><li>公平锁/非公平锁</li><li>可重入锁 synchronized</li><li>独享锁/共享锁</li><li>互斥锁/读写锁 ReentrantLock</li><li>乐观锁/悲观锁 区别？ CAS算法</li><li>分段锁 ConcurrentHashMap</li></ol><p>tpc三次握手和四次挥手</p><p>epoll和select区别</p><p>设计模式<br>主要用到那些<br>Singleton 工厂 代理模式</p><p>spring 中用到的动态代理<br>动态代理实现和种类，区别</p><p>jvm回收，java的类加载机制</p><p>微服务，服务注册发现</p><p>docker k8s</p><p>数据库<br>介绍下sql优化经验<br>数据库有哪些常用的引擎，主要区别，索引的实现原理<br>b数，b+数的区别</p><p>动态内容<br>HA+Nginx<br>mybatis 动态分页组件<br>zookeeper 应用场景，一致性hash运用<br>对java 高并发的rpc框架<br>本地缓存+分布式缓存</p><p>1、关于spring的aop的实现方法<br>2、关于分布式消息队列，分布式缓存<br>3、关于rpc方面<br>4、关于hashmap源码实现<br>5、关于Java异常的续承层次结构，讲述异常的续承关系<br>6、关于https握手过程<br>7、关于java数据库问题定位和性能调优<br>8、关于设计模式，uml，jvm 内存回收机制问题<br>9、java中重载和重写有什么区别？分别用什么关键字？<br>10、java线程如何启动？<br>11、java中加锁的方式有哪些，怎么个写法？<br>12、乐观锁和悲观锁解释一下<br>13、ORACLE中的SQL如何进行优化，都有哪些方式？<br>14、java中类的加载机制<br>15、介绍一下自己最近做的一个典型的项目<br>16、在项目中遇到了哪些问题，自己是如何解决的<br>17、说一下有哪些常用的设计模式<br>18、事务有哪些特性，在ORACLE中隔离有哪些级别<br>19、使用memcached是一个什么样的原理<br>20、如何存放数据到memcached集群中，介绍一下这个过程。跟进的问题，讲一下一致性哈希算法的实现原理。<br>21、JVM中堆是如何管理的，JVM的内存回收机制，介绍一下<br>22、数据库慢查询优化</p><h1 id="Databricks-数据🧱"><a href="#Databricks-数据🧱" class="headerlink" title="Databricks 数据🧱"></a>Databricks 数据🧱</h1><a href="/2023/09/19/DataBricks-%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/" title="DataBricks">DataBricks</a>]]></content>
+        <content type="html"><![CDATA[<h1 id="腾讯"><a href="#腾讯" class="headerlink" title="腾讯"></a>腾讯</h1><h2 id="Java"><a href="#Java" class="headerlink" title="Java"></a>Java</h2><p>集合类</p><ol><li>collection list set queue<br>LinkedList arraylist 区别<br>LinkedBlockingQueue</li><li>Map hashmap linkedhashmap sortMap<br>cuccrenthashmap</li></ol><p>多线程</p><ol><li>用到那些多线程框架<br>newCachedThreadPool newFixedThreadPool newSingleThreadExecutor newScheduleThreadPool</li></ol><p>锁</p><ol><li>synchronized ReentrantLock 区别<br>lock</li><li>公平锁/非公平锁</li><li>可重入锁 synchronized</li><li>独享锁/共享锁</li><li>互斥锁/读写锁 ReentrantLock</li><li>乐观锁/悲观锁 区别？ CAS算法</li><li>分段锁 ConcurrentHashMap</li></ol><p>tpc三次握手和四次挥手</p><p>epoll和select区别</p><p>设计模式<br>主要用到那些<br>Singleton 工厂 代理模式</p><p>spring 中用到的动态代理<br>动态代理实现和种类，区别</p><p>jvm回收，java的类加载机制</p><p>微服务，服务注册发现</p><p>docker k8s</p><p>数据库<br>介绍下sql优化经验<br>数据库有哪些常用的引擎，主要区别，索引的实现原理<br>b数，b+数的区别</p><p>动态内容<br>HA+Nginx<br>mybatis 动态分页组件<br>zookeeper 应用场景，一致性hash运用<br>对java 高并发的rpc框架<br>本地缓存+分布式缓存</p><p>1、关于spring的aop的实现方法<br>2、关于分布式消息队列，分布式缓存<br>3、关于rpc方面<br>4、关于hashmap源码实现<br>5、关于Java异常的续承层次结构，讲述异常的续承关系<br>6、关于https握手过程<br>7、关于java数据库问题定位和性能调优<br>8、关于设计模式，uml，jvm 内存回收机制问题<br>9、java中重载和重写有什么区别？分别用什么关键字？<br>10、java线程如何启动？<br>11、java中加锁的方式有哪些，怎么个写法？<br>12、乐观锁和悲观锁解释一下<br>13、ORACLE中的SQL如何进行优化，都有哪些方式？<br>14、java中类的加载机制<br>15、介绍一下自己最近做的一个典型的项目<br>16、在项目中遇到了哪些问题，自己是如何解决的<br>17、说一下有哪些常用的设计模式<br>18、事务有哪些特性，在ORACLE中隔离有哪些级别<br>19、使用memcached是一个什么样的原理<br>20、如何存放数据到memcached集群中，介绍一下这个过程。跟进的问题，讲一下一致性哈希算法的实现原理。<br>21、JVM中堆是如何管理的，JVM的内存回收机制，介绍一下<br>22、数据库慢查询优化</p><figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//笔试题目: 无</span></span><br><span class="line"><span class="comment">// 一、基础</span></span><br><span class="line"><span class="comment">//1.面向对象的特征</span></span><br><span class="line"><span class="comment">//2.重载和重写的区别</span></span><br><span class="line"><span class="comment">//3.抽象类和接口的区别</span></span><br><span class="line"><span class="comment">//4.List和Set区别（Arraylist、LinkedList）</span></span><br><span class="line"><span class="comment">//5.HashMap（原理及实现）</span></span><br><span class="line"><span class="comment">//6.线程池的原理及实现（ThreadLocal）</span></span><br><span class="line"><span class="comment">//7.JVM运行时内存区域(内存溢出OOM问题)</span></span><br><span class="line"><span class="comment">//8.常见的设计模式？简单介绍1~2个</span></span><br><span class="line"><span class="comment">//9.MySQL个人简单总结（索引优化）</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">//// 二、代码</span></span><br><span class="line"><span class="comment">//1.饿汉式、懒汉式的单例模式Java代码实现</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 懒汉:</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Singleton</span> {</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Singleton instance;</span><br><span class="line">    <span class="keyword">private</span> <span class="title function_">Singleton</span><span class="params">()</span> {}</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">synchronized</span> Singleton <span class="title function_">getInstance</span><span class="params">()</span> {</span><br><span class="line">        <span class="keyword">if</span> (instance == <span class="literal">null</span>) instance = <span class="keyword">new</span> <span class="title class_">Singleton</span>();</span><br><span class="line">        <span class="keyword">return</span> instance;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment">// 饿汉:</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Singleton</span> {</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">Singleton</span> <span class="variable">instance</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Singleton</span>();</span><br><span class="line">    <span class="keyword">private</span> <span class="title function_">Singleton</span><span class="params">()</span> {}</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title function_">getInstance</span><span class="params">()</span> {</span><br><span class="line">        <span class="keyword">return</span> instance;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure><h1 id="Databricks-数据🧱"><a href="#Databricks-数据🧱" class="headerlink" title="Databricks 数据🧱"></a>Databricks 数据🧱</h1><a href="/2023/09/19/DataBricks-%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/" title="DataBricks">DataBricks</a>]]></content>
       
       
       <categories>
@@ -558,9 +589,9 @@
       
         <tags>
             
-            <tag> 二叉树 </tag>
-            
             <tag> 数据结构 </tag>
+            
+            <tag> 二叉树 </tag>
             
         </tags>
       
@@ -585,11 +616,11 @@
       
         <tags>
             
+            <tag> 数据结构 </tag>
+            
             <tag> 二叉树 </tag>
             
             <tag> 二叉搜索树 </tag>
-            
-            <tag> 数据结构 </tag>
             
         </tags>
       
@@ -614,9 +645,9 @@
       
         <tags>
             
-            <tag> 二叉树 </tag>
-            
             <tag> 数据结构 </tag>
+            
+            <tag> 二叉树 </tag>
             
         </tags>
       
@@ -641,9 +672,9 @@
       
         <tags>
             
-            <tag> 二叉树 </tag>
-            
             <tag> 数据结构 </tag>
+            
+            <tag> 二叉树 </tag>
             
         </tags>
       
@@ -718,9 +749,9 @@
       
         <tags>
             
-            <tag> 二叉树 </tag>
-            
             <tag> 数据结构 </tag>
+            
+            <tag> 二叉树 </tag>
             
         </tags>
       
