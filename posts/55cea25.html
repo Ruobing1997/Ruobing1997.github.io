@@ -1,0 +1,436 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>CS5520-Week5-Threads | Robin's Blog</title><meta name="author" content="Ruobing Wang"><meta name="copyright" content="Ruobing Wang"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="record course material for CS5520 at NEU">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CS5520-Week5-Threads">
+<meta property="og:url" content="http://ruobingw.com/posts/55cea25.html">
+<meta property="og:site_name" content="Robin&#39;s Blog">
+<meta property="og:description" content="record course material for CS5520 at NEU">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://ruobingw.com/images/avatar.jpg">
+<meta property="article:published_time" content="2024-02-26T18:57:48.000Z">
+<meta property="article:modified_time" content="2024-05-15T04:17:52.552Z">
+<meta property="article:author" content="Ruobing Wang">
+<meta property="article:tag" content="courses">
+<meta property="article:tag" content="NEU">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://ruobingw.com/images/avatar.jpg"><link rel="shortcut icon" href="/images/logo.png"><link rel="canonical" href="http://ruobingw.com/posts/55cea25.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-54HWWM1WE5"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-54HWWM1WE5');
+</script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":300},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"Author: Ruobing Wang","link":"Link: ","source":"Source: Robin's Blog","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'CS5520-Week5-Threads',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-05-15 00:17:52'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/config/css/categoryBar.css" type="text/css"><link rel="stylesheet" href="/config/css/nav.css" type="text/css"><meta name="generator" content="Hexo 6.3.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="Robin's Blog" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/images/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">59</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">52</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">5</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-address-card"></i><span> About</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-book"></i><span> Articles</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url('/images/default-top.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="Robin's Blog"><span class="site-name">Robin's Blog</span></a></span><div id="menus"></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-address-card"></i><span> About</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-book"></i><span> Articles</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></li></ul></div></div><center id="name-container"><a id="page-name" href="javascript:scrollToTop()">PAGE_NAME</a></center><div id="nav-right"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i></a></div><div id="toggle-menu"> <a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">CS5520-Week5-Threads</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2024-02-26T18:57:48.000Z" title="Created 2024-02-26 13:57:48">2024-02-26</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2024-05-15T04:17:52.552Z" title="Updated 2024-05-15 00:17:52">2024-05-15</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="CS5520-Week5-Threads"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="Week-5-Threads-AsyncTask-Broadcast"><a href="#Week-5-Threads-AsyncTask-Broadcast" class="headerlink" title="Week 5 - Threads, AsyncTask, Broadcast"></a>Week 5 - Threads, AsyncTask, Broadcast</h1><h1 id="Android-Threads"><a href="#Android-Threads" class="headerlink" title="Android Threads"></a>Android Threads</h1><p>Main Thread and UI Thread Use Interchangblely</p>
+<p>When Launch new Activity, it happens on Main Thread unlsess explicitly done something to have it run on other threads</p>
+<p>The Android User Interface (UI) toolkit refers to a set of tools and APIs provided by the Android framework that developers use to design and manage the user interface of their applications. This toolkit includes a wide range of UI elements such as buttons, text views, list views, layout managers, and many more, which are essential for creating interactive and visually appealing applications.</p>
+<p>Android Uer Interface toolkit is not thread safe</p>
+<p>Rules to follow:</p>
+<ol>
+<li>Never block UI/Main Thread ← 所以也不需要intensive的东西</li>
+<li>Do not access UI from a non-UI Thread</li>
+</ol>
+<h2 id="Android-Components"><a href="#Android-Components" class="headerlink" title="Android Components:"></a>Android Components:</h2><p>在Android开发中，Activities（活动）、Services（服务）和Broadcast Receivers（广播接收器）是三种主要的应用组件，每种组件都有其特定的用途和生命周期。下面是每种组件的简介和比较，以及相应的例子。</p>
+<h3 id="Activities（活动）"><a href="#Activities（活动）" class="headerlink" title="Activities（活动）"></a><strong>Activities（活动）</strong></h3><ul>
+<li><strong>定义：</strong> Activity是一个代表单个屏幕的UI组件，用户可以与之互动。它通常充当应用程序中的一个界面，用于显示信息、接收用户输入等。</li>
+<li><strong>用例：</strong> 例如，一个电子邮件应用可能有一个显示收件箱列表的Activity，点击某个邮件后，会启动另一个Activity来显示邮件内容。</li>
+</ul>
+<h3 id="Services（服务）"><a href="#Services（服务）" class="headerlink" title="Services（服务）"></a><strong>Services（服务）</strong></h3><ul>
+<li><strong>定义：</strong> Service是一个用于在后台执行长时间运行操作而不提供用户界面的组件。服务可以在应用程序的背景中执行任务，即使用户没有直接与应用程序交互。</li>
+<li><strong>用例：</strong> 例如，一个音乐播放应用可以使用Service在后台播放音乐，即使用户离开了应用的界面。</li>
+</ul>
+<h3 id="Broadcast-Receivers（广播接收器）"><a href="#Broadcast-Receivers（广播接收器）" class="headerlink" title="Broadcast Receivers（广播接收器）"></a><strong>Broadcast Receivers（广播接收器）</strong></h3><ul>
+<li><strong>定义：</strong> Broadcast Receiver是一种用于接收和响应来自其他应用程序或系统的广播通知的组件。它们主要用于监听和响应系统级事件，如屏幕关闭、电池电量低等。</li>
+<li><strong>用例：</strong> 例如，应用程序可以注册一个Broadcast Receiver来监听设备启动完成的广播，以便在设备启动时执行某些操作。</li>
+</ul>
+<h2 id="Process-Heirarchy"><a href="#Process-Heirarchy" class="headerlink" title="Process Heirarchy"></a>Process Heirarchy</h2><p>手机的资源比较紧缺所以会按照层级来移除低等级的Process</p>
+<ol>
+<li>Foreground Process<ol>
+<li>most important, required to do right now</li>
+<li>一般指：<ol>
+<li>Running an activity the user is interacting with</li>
+<li>BroadcastReceiver that is currently running</li>
+<li>Service currently executing code in a callback</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>Visible Process<ol>
+<li>Activity visible on Screen but not active (onPause() has been called)</li>
+<li>Service is running in the foreground ← Music Player playing music</li>
+<li>Service that manages something the user might be aware of ← live wallpaper</li>
+</ol>
+</li>
+<li>Service Process<ol>
+<li>Hosting a service that is started</li>
+<li>Usually not as visible to users</li>
+<li>Doing something the user cares about</li>
+<li>eg updating or downloading something</li>
+</ol>
+</li>
+<li>Cached Process (Android use LRU strategy)<ol>
+<li>not currently active, but could become active soon</li>
+</ol>
+</li>
+</ol>
+<p>If the main thread cannot finish executing blocks of work within 16ms, the user may observe hitching, lagging, or a lack of UI responsiveness to input. If the main thread blocks for approximately five seconds, the system displays the&nbsp;<em><a target="_blank" rel="noopener" href="https://developer.android.com/training/articles/perf-anr">Application Not Responding</a></em>&nbsp;(ANR) dialog, allowing the user to close the app directly.</p>
+<h1 id="Java-Runnable-Threads"><a href="#Java-Runnable-Threads" class="headerlink" title="Java Runnable - Threads"></a>Java Runnable - Threads</h1><p><img src="/posts/55cea25/Untitled.png" alt="Untitled"></p>
+<p>![Untitled 1](/posts/55cea25/Untitled 1.png)</p>
+<p>![Untitled 2](/posts/55cea25/Untitled 2.png)</p>
+<p>您上传了三张关于并发编程中的进度图（progress graphs）和关键部分（critical sections）与不安全区域（unsafe regions）的图表。这些图表是并发编程概念的视觉表示，让我们来逐一解读。</p>
+<h3 id="第一张图：Trajectories-in-Progress-Graphs"><a href="#第一张图：Trajectories-in-Progress-Graphs" class="headerlink" title="第一张图：Trajectories in Progress Graphs"></a>第一张图：Trajectories in Progress Graphs</h3><p>这张图展示了两个线程（Thread 1 和 Thread 2）的可能执行轨迹。轨迹是合法的状态转换序列，描述了线程可能的并发执行。图中的示例轨迹是：</p>
+<p><code>H1, L1, U1, H2, L2, S1, T1, U2, S2, T2</code></p>
+<p>这意味着：</p>
+<ul>
+<li>Thread 1 从 H1 开始，执行到 L1，然后是 U1。</li>
+<li>然后，Thread 2 从 H2 开始，执行到 L2。</li>
+<li>接着是 Thread 1 的 S1，T1。</li>
+<li>然后是 Thread 2 的 U2，S2，T2。</li>
+</ul>
+<p>这个轨迹通过红色箭头标出，表明了线程的执行顺序和交替。</p>
+<h3 id="第二张图：Critical-Sections-and-Unsafe-Regions"><a href="#第二张图：Critical-Sections-and-Unsafe-Regions" class="headerlink" title="第二张图：Critical Sections and Unsafe Regions"></a>第二张图：Critical Sections and Unsafe Regions</h3><p>第二张图说明了什么是关键部分和不安全区域。关键部分是指访问共享资源（在这个例子中是 <code>cnt</code> 变量）时的代码区域，应该避免两个线程同时进入此区域。不安全区域是图中标红区域，表示如果两个线程的执行轨迹同时进入这个区域，就可能发生竞态条件（race condition），导致不可预测的结果。</p>
+<h3 id="第三张图：Critical-Sections-and-Unsafe-Regions-with-Safe-Trajectory"><a href="#第三张图：Critical-Sections-and-Unsafe-Regions-with-Safe-Trajectory" class="headerlink" title="第三张图：Critical Sections and Unsafe Regions with Safe Trajectory"></a>第三张图：Critical Sections and Unsafe Regions with Safe Trajectory</h3><p>第三张图显示了一个安全的执行轨迹，即在任何时候都避免进入不安全区域。绿色箭头表示了一个安全轨迹的例子，这个轨迹没有进入不安全区域，因此对于共享变量 <code>cnt</code> 来说是正确的。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
+<li><strong>轨迹（Trajectory）</strong>：线程的执行序列。</li>
+<li><strong>关键部分（Critical Section）</strong>：一个或多个线程访问共享资源的代码区域。</li>
+<li><strong>不安全区域（Unsafe Region）</strong>：可能导致并发错误的状态集合。</li>
+<li><strong>安全轨迹（Safe Trajectory）</strong>：一条不穿越任何不安全区域的轨迹。</li>
+</ul>
+<p>这些图是并发编程中同步和互斥概念的可视化表示。它们用于教学和理解如何在多线程环境中安全地协调对共享资源的访问。</p>
+<p>![Untitled 3](/posts/55cea25/Untitled 3.png)</p>
+<p>您上传的图片显示了一个名为 <code>RaceCondition</code> 的类，它包含一个名为 <code>sharedResource</code> 的共享资源和一个名为 <code>startTwoThreads</code> 的方法。这个方法创建并启动两个线程，<code>t1</code> 和 <code>t2</code>。线程 <code>t1</code> 将 <code>sharedResource</code> 的值增加1（<code>sharedResource++</code>），而线程 <code>t2</code> 将其减少1（<code>sharedResource--</code>）。</p>
+<p>以下是根据前面的图表分析的结果：</p>
+<h3 id="轨迹（Trajectory）"><a href="#轨迹（Trajectory）" class="headerlink" title="轨迹（Trajectory）"></a>轨迹（Trajectory）</h3><p>在这个示例中，轨迹是两个线程对 <code>sharedResource</code> 变量执行的操作序列。例如，如果 <code>t1</code> 先执行，然后是 <code>t2</code>，轨迹可能是 <code>H1, L1, U1, H2, L2, U2</code>。但是，由于操作系统的调度，我们无法保证执行的顺序。如果线程 <code>t1</code> 和 <code>t2</code> 几乎同时运行，它们对 <code>sharedResource</code> 的操作可能会交错，导致多种可能的轨迹。</p>
+<h3 id="关键部分（Critical-Section）"><a href="#关键部分（Critical-Section）" class="headerlink" title="关键部分（Critical Section）"></a>关键部分（Critical Section）</h3><p>在这个例子中，关键部分是对 <code>sharedResource</code> 的增加和减少操作。由于这些操作不是原子的（也就是说，它们不是一个不可分割的单个操作），它们可以被另一个线程的操作中断。如果两个线程同时进入关键部分，就可能导致 <code>sharedResource</code> 的最终值不正确。</p>
+<h3 id="不安全区域（Unsafe-Region）"><a href="#不安全区域（Unsafe-Region）" class="headerlink" title="不安全区域（Unsafe Region）"></a>不安全区域（Unsafe Region）</h3><p>不安全区域是指如果两个线程的操作交错发生时，可能导致数据不一致的状态集合。在这个代码示例中，不安全区域包括了所有可能导致 <code>sharedResource</code> 更新不正确的状态。例如，如果线程 <code>t1</code> 执行 <code>sharedResource++</code> 但在完成这个操作之前被线程 <code>t2</code> 打断，线程 <code>t2</code> 执行 <code>sharedResource--</code>，那么最终 <code>sharedResource</code> 的值可能不会反映两个操作。</p>
+<h3 id="安全轨迹（Safe-Trajectory）"><a href="#安全轨迹（Safe-Trajectory）" class="headerlink" title="安全轨迹（Safe Trajectory）"></a>安全轨迹（Safe Trajectory）</h3><p>一个安全轨迹是一种线程执行顺序，其中不发生任何进入不安全区域的情况。要实现安全轨迹，需要同步机制来确保当一个线程在执行对 <code>sharedResource</code> 的操作时，另一个线程不能执行其操作。在Java中，可以通过使用 <code>synchronized</code> 关键字或显式的锁（如 <code>ReentrantLock</code>）来保证操作的原子性，从而创建一个安全的轨迹。</p>
+<h3 id="为什么"><a href="#为什么" class="headerlink" title="为什么"></a>为什么</h3><p>由于Java中的线程调度是不确定的，因此两个线程对 <code>sharedResource</code> 的操作可能会以不可预测的方式交错。这就是为什么这段代码存在竞态条件的风险，以及为什么不使用同步机制时，不能保证 <code>sharedResource</code> 的值是线程安全的。通过使用同步机制，我们可以确保每次只有一个线程能够进入关键部分，从而避免不安全区域并保证数据的一致性。</p>
+<p>要解决这种竞态条件，您可以使用 <code>synchronize</code> 关键字来确保对共享资源 <code>sharedResource</code> 的操作是原子性的，这样同一时间只有一个线程能够访问和修改它。</p>
+<p>在Java中，有几种方法可以使用 <code>synchronize</code> 关键字来同步对共享资源的访问：</p>
+<ol>
+<li><p><strong>同步方法（Synchronized Method）</strong>：<br>您可以将整个方法声明为同步的，这将锁定包含该方法的对象实例，以便一次只有一个线程可以执行该方法。</p>
+ <figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title function_">increment</span><span class="params">()</span> {</span><br><span class="line">    sharedResource++;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title function_">decrement</span><span class="params">()</span> {</span><br><span class="line">    sharedResource--;</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p><strong>同步块（Synchronized Block）</strong>：<br>如果您只想同步方法中的一部分代码（也就是关键部分），您可以使用同步块。</p>
+ <figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">increment</span><span class="params">()</span> {</span><br><span class="line">    <span class="keyword">synchronized</span>(<span class="built_in">this</span>) {</span><br><span class="line">        sharedResource++;</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">decrement</span><span class="params">()</span> {</span><br><span class="line">    <span class="keyword">synchronized</span>(<span class="built_in">this</span>) {</span><br><span class="line">        sharedResource--;</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure></li>
+</ol>
+<p>在这两种情况下，<code>this</code> 引用的是包含 <code>synchronized</code> 代码的对象实例。当一个线程进入一个同步的方法或块时，它会获得该对象的锁，并在退出时释放锁。其他线程必须等待锁被释放才能执行同步的代码。</p>
+<p>这是您原始代码的修改版本，使用了同步方法来解决竞态条件：</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">RaceCondition</span> {</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> <span class="variable">sharedResource</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title function_">increment</span><span class="params">()</span> {</span><br><span class="line">        sharedResource++;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title function_">decrement</span><span class="params">()</span> {</span><br><span class="line">        sharedResource--;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">startTwoThreads</span><span class="params">()</span> {</span><br><span class="line">        <span class="type">Thread</span> <span class="variable">t1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Thread</span>(<span class="keyword">new</span> <span class="title class_">Runnable</span>() {</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span> {</span><br><span class="line">                increment();</span><br><span class="line">            }</span><br><span class="line">        });</span><br><span class="line">        t1.start();</span><br><span class="line"></span><br><span class="line">        <span class="type">Thread</span> <span class="variable">t2</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Thread</span>(<span class="keyword">new</span> <span class="title class_">Runnable</span>() {</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span> {</span><br><span class="line">                decrement();</span><br><span class="line">            }</span><br><span class="line">        });</span><br><span class="line">        t2.start();</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+
+<p>通过同步 <code>increment</code> 和 <code>decrement</code> 方法，我们确保了 <code>sharedResource</code> 的增加和减少操作是线程安全的。</p>
+<p>在Java中，<code>wait()</code>, <code>notify()</code>, 和 <code>notifyAll()</code> 是 <code>Object</code> 类的一部分，它们用于线程间的通信，特别是在同步代码块内部。这些方法用来协调需要共享资源的多个线程之间的交互，特别是当某些条件不满足时，线程需要等待其他线程来改变这些条件。</p>
+<h3 id="wait"><a href="#wait" class="headerlink" title="wait()"></a>wait()</h3><p><code>wait()</code> 方法用于使当前执行的线程暂停执行（进入等待状态）直到其他线程调用同一对象上的 <code>notify()</code> 或 <code>notifyAll()</code> 方法。调用 <code>wait()</code> 之前，线程必须持有该对象的锁，调用 <code>wait()</code> 后，它会释放锁并进入对象的等待池。一旦该线程被 <code>notify()</code> 或 <code>notifyAll()</code> 唤醒，它会尝试重新获取锁，并在成功后继续执行。</p>
+<h3 id="notify"><a href="#notify" class="headerlink" title="notify()"></a>notify()</h3><p><code>notify()</code> 方法用于唤醒在此对象的等待池中等待的单个线程。如果有多个线程都在等待，那么会选择其中一个线程（选择方式不确定）进行唤醒。被唤醒的线程将尝试重新获得对象的锁，一旦获得，它可以继续执行。</p>
+<h3 id="notifyAll"><a href="#notifyAll" class="headerlink" title="notifyAll()"></a>notifyAll()</h3><p><code>notifyAll()</code> 方法唤醒在此对象的等待池中等待的所有线程。这不是立即将锁分配给这些线程，而是让它们竞争对象锁。只有锁可用时，这些线程中的一个才能继续执行。<code>notifyAll()</code> 通常用于通知所有等待的线程条件可能已经满足，让它们重新检查条件是否达到了可以继续执行的状态。</p>
+<h3 id="使用示例"><a href="#使用示例" class="headerlink" title="使用示例"></a>使用示例</h3><p>假设你有一个生产者-消费者问题，其中消费者线程需要等待生产者线程在队列中放入对象。</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SharedResource</span> {</span><br><span class="line">    <span class="keyword">private</span> LinkedList&lt;Integer&gt; list = <span class="keyword">new</span> <span class="title class_">LinkedList</span>&lt;&gt;();</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> <span class="variable">capacity</span> <span class="operator">=</span> <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title function_">produce</span><span class="params">(<span class="type">int</span> value)</span> <span class="keyword">throws</span> InterruptedException {</span><br><span class="line">        <span class="keyword">while</span> (list.size() == capacity) {</span><br><span class="line">            wait(); <span class="comment">// 等待消费者消费产品</span></span><br><span class="line">        }</span><br><span class="line">        list.add(value);</span><br><span class="line">        notifyAll(); <span class="comment">// 通知消费者可以消费了</span></span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="type">int</span> <span class="title function_">consume</span><span class="params">()</span> <span class="keyword">throws</span> InterruptedException {</span><br><span class="line">        <span class="keyword">while</span> (list.size() == <span class="number">0</span>) {</span><br><span class="line">            wait(); <span class="comment">// 等待生产者生产产品</span></span><br><span class="line">        }</span><br><span class="line">        <span class="type">int</span> <span class="variable">value</span> <span class="operator">=</span> list.removeFirst();</span><br><span class="line">        notifyAll(); <span class="comment">// 通知生产者可以生产了</span></span><br><span class="line">        <span class="keyword">return</span> value;</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+
+<p>在上面的例子中，<code>produce()</code> 和 <code>consume()</code> 方法都是同步的，这意味着它们在执行前要获取 <code>SharedResource</code> 对象的锁。如果条件不满足（例如，队列满或空），生产者或消费者将调用 <code>wait()</code> 并释放锁，进入等待状态。当一个生产者或消费者更改了条件后，它将调用 <code>notifyAll()</code> 来唤醒所有等待的线程，这些线程将尝试重新获取锁，并检查它们的条件是否现在满足了。</p>
+<p>重要的是要记住，使用这些方法时需要注意正确的条件循环（通常是 <code>while</code> 循环），以避免虚假唤醒带来的问题。此外，在调用 <code>wait()</code>, <code>notify()</code>, 或 <code>notifyAll()</code> 时，线程必须持有那个对象的锁。</p>
+<p>![Untitled 4](/posts/55cea25/Untitled 4.png)</p>
+<p>在您提供的代码示例中，使用了读写锁（<code>ReentrantReadWriteLock</code> 或类似的锁实现），这是一个支持多个读取操作和一个写入操作的锁机制。</p>
+<h3 id="为什么需要读锁（Read-Lock）"><a href="#为什么需要读锁（Read-Lock）" class="headerlink" title="为什么需要读锁（Read Lock）"></a>为什么需要读锁（Read Lock）</h3><ol>
+<li><strong>数据一致性</strong>：即使是看似简单的读取操作，也可能会因为同时进行的写入操作而返回不一致的数据。例如，如果一个线程正在读取一个值，同时另一个线程在写入这个值，没有合适的同步可能导致读取操作获得一个无效的值。</li>
+<li><strong>防止写入时读取</strong>：读锁可以确保没有写操作正在进行，这样读取操作就可以安全地进行。在这种锁的机制中，任何时候都可以有多个读取操作进行，只要没有写锁被持有。</li>
+</ol>
+<h3 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h3><ol>
+<li><strong>多读单写</strong>：读写锁允许多个线程同时读取，但保证只有一个线程进行写入，从而在保持并发读取的同时，还能保证写入的独占性和数据的完整性。</li>
+<li><strong>性能优化</strong>：相比于传统的互斥锁（如<code>synchronized</code>关键字或<code>ReentrantLock</code>），读写锁在只进行读取操作时允许更高的并发性，这可以在多线程环境下显著提高性能。</li>
+<li><strong>避免读取脏数据</strong>：使用读锁可以确保在读取期间不会有其他线程进行写入，这意味着读取操作不会得到部分更新的“脏数据”。</li>
+</ol>
+<p>在您的代码中，<code>readState()</code> 方法在读取 <code>sharedResource</code> 前获取了读锁，并在返回值后释放了读锁。这确保了在执行读取操作时，不会有其他线程正在执行写入操作（<code>changeState()</code> 方法），从而保持了数据的一致性和完整性。</p>
+<h3 id="正确的锁释放"><a href="#正确的锁释放" class="headerlink" title="正确的锁释放"></a>正确的锁释放</h3><p>在 <code>finally</code> 块中释放锁是非常重要的，因为它确保了即使在尝试获取或返回共享资源时发生异常，锁也会被释放，这样就不会导致死锁或资源不再可用。</p>
+<p>这段代码就体现了一种在多线程环境中保证数据一致性的好做法，它通过适当地使用锁来同步对共享资源的访问。</p>
+<p>在Java中，创建线程有两种常见的方法：继承 <code>Thread</code> 类和实现 <code>Runnable</code> 接口。下面是两种方法的说明和示例。</p>
+<h3 id="继承-Thread-类"><a href="#继承-Thread-类" class="headerlink" title="继承 Thread 类"></a>继承 <code>Thread</code> 类</h3><p>当你继承 <code>Thread</code> 类时，你需要重写其 <code>run</code> 方法来定义线程执行的代码。然后你可以创建该类的实例并调用 <code>start</code> 方法来启动新线程。</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MyThread</span> <span class="keyword">extends</span> <span class="title class_">Thread</span> {</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span> {</span><br><span class="line">        <span class="comment">// 代码在线程中执行</span></span><br><span class="line">        System.out.println(<span class="string">"Thread running: "</span> + <span class="built_in">this</span>.getName());</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Main</span> {</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> {</span><br><span class="line">        <span class="type">MyThread</span> <span class="variable">thread</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">MyThread</span>();</span><br><span class="line">        thread.start(); <span class="comment">// 启动线程</span></span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="实现-Runnable-接口"><a href="#实现-Runnable-接口" class="headerlink" title="实现 Runnable 接口"></a>实现 <code>Runnable</code> 接口</h3><p>实现 <code>Runnable</code> 接口是创建线程的另一种方式。你需要实现 <code>run</code> 方法，然后将 <code>Runnable</code> 实现类的实例传递给 <code>Thread</code> 类的构造器，并启动线程。</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MyRunnable</span> <span class="keyword">implements</span> <span class="title class_">Runnable</span> {</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span> {</span><br><span class="line">        <span class="comment">// 代码在线程中执行</span></span><br><span class="line">        System.out.println(<span class="string">"Thread running using Runnable"</span>);</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Main</span> {</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> {</span><br><span class="line">        <span class="type">Thread</span> <span class="variable">thread</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Thread</span>(<span class="keyword">new</span> <span class="title class_">MyRunnable</span>());</span><br><span class="line">        thread.start(); <span class="comment">// 启动线程</span></span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="继承-Thread-类-vs-实现-Runnable-接口"><a href="#继承-Thread-类-vs-实现-Runnable-接口" class="headerlink" title="继承 Thread 类 vs 实现 Runnable 接口"></a>继承 <code>Thread</code> 类 vs 实现 <code>Runnable</code> 接口</h3><p>虽然这两种方式都可以用来创建线程，但它们之间有一些重要的区别：</p>
+<ol>
+<li><strong>实现 <code>Runnable</code> 接口的优点</strong>：<ul>
+<li>Java不支持多重继承。如果你的类已经继承了另一个类，你就不能再继承 <code>Thread</code> 类，但你仍然可以实现 <code>Runnable</code> 接口。</li>
+<li>实现 <code>Runnable</code> 接口可以使类更加灵活地被多个线程实例共享和执行。</li>
+</ul>
+</li>
+<li><strong>继承 <code>Thread</code> 类的缺点</strong>：<ul>
+<li>继承 <code>Thread</code> 类意味着你不能再继承其他类，因为Java不支持多重继承。</li>
+<li>当你继承 <code>Thread</code> 类时，你的线程类不能被其他的子类再次扩展。</li>
+</ul>
+</li>
+</ol>
+<p>通常情况下，实现 <code>Runnable</code> 接口被认为是更好的做法，因为它更加灵活，使你的线程代码可以被多个执行器（Executors）或线程共享，而不是限制在单个 <code>Thread</code> 对象中。</p>
+<p>![Untitled 5](/posts/55cea25/Untitled 5.png)</p>
+<ol>
+<li><strong><code>differentThread</code></strong> 类继承自 <strong><code>Thread</code></strong> 类。它在其 <strong><code>run()</code></strong> 方法内部包含一个循环，循环会执行10次。</li>
+<li>在 <strong><code>differentThread</code></strong> 的 <strong><code>run()</code></strong> 方法中，使用了 <strong><code>Handler.post()</code></strong> 方法。这并不是创建了一个新的线程，而是在Android的UI线程中安排一个 <strong><code>Runnable</code></strong> 对象执行。这是因为对UI的操作需要在UI线程中执行，而 <strong><code>Handler.post()</code></strong> 是将一个任务排队到UI线程的事件队列中，这样它就可以在UI线程中被处理。</li>
+<li><strong><code>final int finalI = i;</code></strong> 这行代码是创建了一个在内部匿名 <strong><code>Runnable</code></strong> 类中使用的最终变量（因为局部变量在内部类中使用时必须是最终的或事实上最终的）。</li>
+<li>在每次循环中，都会通过 <strong><code>Handler.post()</code></strong> 发布一个新的 <strong><code>Runnable</code></strong> 到UI线程的消息队列中，这个 <strong><code>Runnable</code></strong> 设置 <strong><code>TextView</code></strong> 的文本。这不是创建新线程，而是在UI线程中调度任务。</li>
+<li><strong><code>Thread.sleep(1000);</code></strong> 使 <strong><code>differentThread</code></strong> 睡眠1秒钟，这是在 <strong><code>differentThread</code></strong> 线程中进行的，不会影响UI线程。</li>
+</ol>
+<p>通过循环创建10个thread:</p>
+<p>如果您去掉 <code>textHandler.post()</code> 并且是在一个普通的Java环境（而不是Android），直接在循环内部创建并启动线程，那么您将会创建多个线程。以下是一个简单的Java示例，它在一个循环中创建和启动了10个线程：</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MultipleThreadsExample</span> {</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> {</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) {</span><br><span class="line">            <span class="comment">// 每次循环创建一个新的线程</span></span><br><span class="line">            <span class="type">Thread</span> <span class="variable">thread</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Thread</span>(<span class="keyword">new</span> <span class="title class_">Runnable</span>() {</span><br><span class="line">                <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span> {</span><br><span class="line">                    <span class="comment">// 在这里放入每个线程需要执行的代码</span></span><br><span class="line">                    System.out.println(<span class="string">"Running in a new thread: "</span> + Thread.currentThread().getName());</span><br><span class="line">                }</span><br><span class="line">            });</span><br><span class="line">            <span class="comment">// 启动线程</span></span><br><span class="line">            thread.start();</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+
+<p>在这个示例中，每次循环都会创建一个新的 <code>Thread</code> 实例，并将一个新的 <code>Runnable</code> 实例传递给它。然后调用 <code>start()</code> 方法启动线程。每个线程将在控制台输出它正在运行的线程名称。这样，一共会有10个线程被创建并启动，它们将并发执行。</p>
+<h2 id="Runnable"><a href="#Runnable" class="headerlink" title="Runnable:"></a>Runnable:</h2><p>在Java中，<code>Runnable</code> 是一个接口，用于创建可以由线程执行的任务。它是并发编程的核心接口之一，表示一个抽象的可执行任务。</p>
+<h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p><code>Runnable</code> 接口非常简单，它只有一个方法：</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">Runnable</span> {</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span>;</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><p>当一个类实现了 <code>Runnable</code> 接口，它需要提供 <code>run</code> 方法的实现。<code>run</code> 方法定义了线程启动时执行的操作。以下是一个实现 <code>Runnable</code> 接口的简单示例：</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyRunnable</span> <span class="keyword">implements</span> <span class="title class_">Runnable</span> {</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span> {</span><br><span class="line">        <span class="comment">// 这里是线程要执行的代码</span></span><br><span class="line">        System.out.println(<span class="string">"MyRunnable is running."</span>);</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p>要执行一个实现了 <code>Runnable</code> 接口的任务，你需要将它传递给一个 <code>Thread</code> 对象然后启动该线程：</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">MyRunnable</span> <span class="variable">myRunnable</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">MyRunnable</span>();</span><br><span class="line"><span class="type">Thread</span> <span class="variable">thread</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Thread</span>(myRunnable);</span><br><span class="line">thread.start();</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+
+<p>当调用 <code>thread.start()</code> 时，新的线程会启动并执行 <code>run</code> 方法中定义的代码。</p>
+<h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><p>使用 <code>Runnable</code> 接口的主要优点是它更加灵活。由于Java不支持多重继承，如果你已经继承了另一个类，就不能再继承 <code>Thread</code> 类。但你仍然可以实现 <code>Runnable</code> 接口来定义线程行为。这使得 <code>Runnable</code> 成为创建和管理线程的首选方式，尤其是当需要执行多个相同任务的时候，可以重用同一个 <code>Runnable</code> 实例来创建多个 <code>Thread</code> 实例。</p>
+<h3 id="与-Callable-的比较"><a href="#与-Callable-的比较" class="headerlink" title="与 Callable 的比较"></a>与 <code>Callable</code> 的比较</h3><p><code>Runnable</code> 接口与 <code>Callable</code> 接口相似，但有一个主要区别：<code>Runnable</code> 的 <code>run</code> 方法不返回值也不抛出异常，而 <code>Callable</code> 的 <code>call</code> 方法可以返回值并且可以抛出异常。因此，<code>Callable</code> 通常与 <code>Future</code> 结合使用，可以获取异步计算的结果。</p>
+<p><code>Runnable</code> 通常用于那些不需要返回结果的场景，例如，只是简单地运行一些后台任务，比如日志记录、监控文件系统变化等。</p>
+<h2 id="Threading-in-Android"><a href="#Threading-in-Android" class="headerlink" title="Threading in Android"></a>Threading in Android</h2><p>Threads are three types in Android:</p>
+<p>UI Thread</p>
+<ul>
+<li>Main thread: Excuting Android components and updating UI elements</li>
+<li></li>
+</ul>
+<p>Binder Thread</p>
+<ul>
+<li>Commnuciate between threads in different processes</li>
+<li>each process has a thread pool for incoming requests</li>
+</ul>
+<p>Background Thread</p>
+<ul>
+<li>App-created threads - Worker thread</li>
+<li>Descendants of UI thread</li>
+</ul>
+<p>In Android, both processes and threads are fundamental units of execution, but they serve different roles:</p>
+<h3 id="Process-in-Android"><a href="#Process-in-Android" class="headerlink" title="Process in Android:"></a>Process in Android:</h3><ul>
+<li>Each Android app runs in its own process, which is an instance of a Linux process.</li>
+<li>Processes are isolated by the Android runtime, meaning that one process cannot normally access the memory of another process.</li>
+<li>Each process has its own virtual machine (VM), so code from one app cannot directly affect the code of another app.</li>
+<li>Processes are a heavy-weight unit of execution in terms of system resources.</li>
+</ul>
+<h3 id="Thread-in-Android"><a href="#Thread-in-Android" class="headerlink" title="Thread in Android:"></a>Thread in Android:</h3><ul>
+<li><p>Inside each Android app process, multiple threads can be created.</p>
+</li>
+<li><p>Threads are lighter-weight units of execution that share the same memory space within the process.</p>
+</li>
+<li><p>Threads within the same process can communicate with each other more easily than between processes.</p>
+</li>
+<li><p><strong>All threads of an application are in the same Linux process, but each thread can perform different tasks in parallel.</strong></p>
+<p>  threads from one app do indeed compete with all other threads on the device for CPU resources. Here’s how it works:</p>
+<ol>
+<li><strong>CPU Scheduling:</strong><br>  The operating system’s scheduler manages all threads on the device, regardless of their originating process. The scheduler decides which threads to run, when to run them, and for how long, based on various factors such as thread priorities, CPU affinity, and other scheduling policies.</li>
+<li><strong>Thread Priorities:</strong><br>  Each thread has a priority that influences its scheduling. The Linux kernel uses these priorities to decide which threads should be allocated CPU time. In Android, the main thread, or UI thread, of an app typically has a higher priority because it must remain responsive to user input.</li>
+<li><strong>Concurrency:</strong><br>  Modern devices typically have multiple CPU cores, allowing true parallel execution of threads. However, when the number of active threads exceeds the number of available CPU cores, the scheduler has to allocate time slices for each thread to share the CPU resources, which is where the competition comes into play.</li>
+<li><strong>Resource Sharing:</strong><br>  Even though threads within an app share the same memory space and resources of their parent process, they still need to use shared system resources such as the CPU and memory. This sharing necessitates competition among all threads on the device.</li>
+<li><strong>Fairness and Responsiveness:</strong><br>  The scheduler in the operating system aims to balance fairness (giving each thread a chance to run) with responsiveness (ensuring that high-priority threads, like those handling user interface interactions, are given preference). Android’s scheduler also includes considerations to minimize the impact of background applications on the foreground application’s performance.</li>
+<li><strong>Background vs. Foreground:</strong><br>  Android tries to give more CPU time to the foreground app to ensure a smooth user experience. Background apps have their threads scheduled with lower priority compared to the threads of the foreground app.</li>
+</ol>
+<p>  In conclusion, while threads are conceptually within the scope of their own app’s process, they are indeed competing with threads from other apps and system processes for CPU time. The operating system’s scheduler is responsible for managing this competition in a way that aims to be fair and maintain a responsive system.</p>
+</li>
+</ul>
+<h3 id="Competition-and-Scheduling"><a href="#Competition-and-Scheduling" class="headerlink" title="Competition and Scheduling:"></a>Competition and Scheduling:</h3><ul>
+<li>Threads do not compete across different processes for execution time. Instead, the Linux kernel scheduler decides which process gets time on the CPU. Within each process, the threads are scheduled for execution time based on thread priority and other factors.</li>
+<li>When a thread is created in Android, it competes for CPU time with all other threads within the same priority level across all processes on the device. The scheduler, based on various criteria, decides which thread runs next.</li>
+<li>The main UI thread (also known as the main thread) is the default thread that handles all UI operations and is created when an Android app starts. It must remain responsive to avoid Application Not Responding (ANR) errors.</li>
+</ul>
+<h3 id="Android’s-Thread-Management"><a href="#Android’s-Thread-Management" class="headerlink" title="Android’s Thread Management:"></a>Android’s Thread Management:</h3><ul>
+<li>Android does enforce some rules and best practices to manage threads efficiently:<ul>
+<li>CPU-intensive or blocking operations should not be performed on the main UI thread but rather on background threads.</li>
+<li>The <code>AsyncTask</code> class, <code>HandlerThread</code>, and other concurrency constructs such as <code>java.util.concurrent</code> package classes can be used to perform tasks on background threads and communicate back to the main thread for UI updates.</li>
+<li>Starting from Android 5.0 (API level 21), the <code>JobScheduler</code> class allows you to schedule tasks or work across multiple threads with conditions (like network availability).</li>
+</ul>
+</li>
+</ul>
+<p>In summary, while each Android app runs in its own process, it can create multiple threads. These threads do compete for CPU resources with threads from other apps, but the competition is managed by the operating system’s scheduler. The main thread in each app is special and should be kept free from blocking operations to maintain a responsive user interface.</p>
+<h2 id="AsynchTask"><a href="#AsynchTask" class="headerlink" title="AsynchTask"></a>AsynchTask</h2><p>![Untitled 6](/posts/55cea25/Untitled 6.png)</p>
+<p>![Untitled 7](/posts/55cea25/Untitled 7.png)</p>
+<h2 id="Broadcast-Receivers"><a href="#Broadcast-Receivers" class="headerlink" title="Broadcast Receivers"></a>Broadcast Receivers</h2><p>allows to be notified when an event occurs</p>
+<ul>
+<li>complete tasks in less than 10 seconds</li>
+<li>often use with initializing a service</li>
+</ul>
+<p>![Untitled 8](/posts/55cea25/Untitled 8.png)</p>
+<p>Alarm Manager to allow the broadcastreceiver to run in the future - use case: update new headlines</p>
+<p>In Android, <code>IntentFilter</code> and <code>BroadcastReceiver</code> are components used in the context of inter-process communication. They work together to allow an application to receive intents that are broadcast by the system or other applications.</p>
+<h3 id="BroadcastReceiver"><a href="#BroadcastReceiver" class="headerlink" title="BroadcastReceiver"></a>BroadcastReceiver</h3><p>A <code>BroadcastReceiver</code> is an Android component that responds to broadcast messages from other applications or from the system itself. These messages are wrapped in <code>Intent</code> objects. Broadcasts can be used to deliver many kinds of events to applications that aren’t necessarily running at the time of the broadcast. For example, an application can register to receive system events, like when the Android device boots up, when the battery is low, or when the user has taken a picture.</p>
+<p>Here’s a simple example of a <code>BroadcastReceiver</code>:</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyBroadcastReceiver</span> <span class="keyword">extends</span> <span class="title class_">BroadcastReceiver</span> {</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onReceive</span><span class="params">(Context context, Intent intent)</span> {</span><br><span class="line">        <span class="comment">// Handle the received broadcast event.</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">action</span> <span class="operator">=</span> intent.getAction();</span><br><span class="line">        <span class="keyword">if</span> (Intent.ACTION_BOOT_COMPLETED.equals(action)) {</span><br><span class="line">            <span class="comment">// The device has finished booting</span></span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="IntentFilter"><a href="#IntentFilter" class="headerlink" title="IntentFilter"></a>IntentFilter</h3><p>An <code>IntentFilter</code> specifies the types of intents that a <code>BroadcastReceiver</code> can respond to. It declares the capabilities of a <code>BroadcastReceiver</code>, filtering out intents that are of not interest to the receiver. An <code>IntentFilter</code> can be declared in code or in the AndroidManifest.xml file.</p>
+<p>For example, an <code>IntentFilter</code> can be set up to listen for a boot completion event like this:</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">IntentFilter</span> <span class="variable">filter</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">IntentFilter</span>(Intent.ACTION_BOOT_COMPLETED);</span><br><span class="line"><span class="type">MyBroadcastReceiver</span> <span class="variable">receiver</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">MyBroadcastReceiver</span>();</span><br><span class="line">registerReceiver(receiver, filter);</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+
+<p>Or in the AndroidManifest.xml:</p>
+<figure class="highlight xml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">receiver</span> <span class="attr">android:name</span>=<span class="string">".MyBroadcastReceiver"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">"android.intent.action.BOOT_COMPLETED"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">receiver</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+
+<p>In this example, the <code>MyBroadcastReceiver</code> is set up to listen for the system’s boot completion broadcast. When the system sends an intent with the action <code>ACTION_BOOT_COMPLETED</code>, <code>MyBroadcastReceiver</code> will receive it because of the matching intent filter.</p>
+<h3 id="Registration"><a href="#Registration" class="headerlink" title="Registration"></a>Registration</h3><p><code>BroadcastReceivers</code> can be registered in two ways:</p>
+<ol>
+<li><strong>Static Registration:</strong> This is done in the AndroidManifest.xml file. The system knows about the receiver from the app’s installation time, and the receiver can be called to respond to events even if the app is not currently running.</li>
+<li><strong>Dynamic Registration:</strong> This happens at runtime within the app’s code. The app must be running to register the receiver, often done in an activity or service. When the app is not running or is killed, the receiver does not receive broadcasts.</li>
+</ol>
+<p>When using broadcast receivers, especially for listening to system-wide broadcasts, it is important to consider the performance implications and the best practices for registering and using receivers, as unnecessary use of broadcasts can negatively impact the performance of the application and the overall device.</p>
+<p>The <code>onReceive()</code> method of a <code>BroadcastReceiver</code> is where you handle the logic that should be executed when the broadcast intent is received. The actions taken can vary greatly depending on the intent’s action and the app’s functionality.</p>
+<p>Let’s say we have an application that needs to schedule some data synchronization after the device finishes booting. The logic inside <code>onReceive()</code> for handling <code>Intent.ACTION_BOOT_COMPLETED</code> could look something like this:</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">BootCompletedReceiver</span> <span class="keyword">extends</span> <span class="title class_">BroadcastReceiver</span> {</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onReceive</span><span class="params">(Context context, Intent intent)</span> {</span><br><span class="line">        <span class="keyword">if</span> (Intent.ACTION_BOOT_COMPLETED.equals(intent.getAction())) {</span><br><span class="line">            <span class="comment">// Schedule data synchronization</span></span><br><span class="line">            scheduleDataSync(context);</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">scheduleDataSync</span><span class="params">(Context context)</span> {</span><br><span class="line">        <span class="comment">// Assuming you have a method to schedule jobs</span></span><br><span class="line">        <span class="comment">// This could be using JobScheduler, WorkManager, or any other scheduling mechanism</span></span><br><span class="line">        DataSyncScheduler.schedule(context);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Let's say we also want to send a notification to the user after boot</span></span><br><span class="line">        sendBootNotification(context, <span class="string">"Device Ready"</span>, <span class="string">"Your device is ready and data sync will start soon."</span>);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">sendBootNotification</span><span class="params">(Context context, String title, String text)</span> {</span><br><span class="line">        <span class="type">NotificationManager</span> <span class="variable">notificationManager</span> <span class="operator">=</span> (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);</span><br><span class="line">        <span class="keyword">if</span> (notificationManager == <span class="literal">null</span>) <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Create the NotificationChannel, but only on API 26+ because</span></span><br><span class="line">        <span class="comment">// the NotificationChannel class is new and not in the support library</span></span><br><span class="line">        <span class="keyword">if</span> (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.O) {</span><br><span class="line">            <span class="type">CharSequence</span> <span class="variable">name</span> <span class="operator">=</span> <span class="string">"boot_channel"</span>;</span><br><span class="line">            <span class="type">String</span> <span class="variable">description</span> <span class="operator">=</span> <span class="string">"Notifications after boot"</span>;</span><br><span class="line">            <span class="type">int</span> <span class="variable">importance</span> <span class="operator">=</span> NotificationManager.IMPORTANCE_DEFAULT;</span><br><span class="line">            <span class="type">NotificationChannel</span> <span class="variable">channel</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">NotificationChannel</span>(<span class="string">"boot"</span>, name, importance);</span><br><span class="line">            channel.setDescription(description);</span><br><span class="line">            <span class="comment">// Register the channel with the system</span></span><br><span class="line">            notificationManager.createNotificationChannel(channel);</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        NotificationCompat.<span class="type">Builder</span> <span class="variable">builder</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">NotificationCompat</span>.Builder(context, <span class="string">"boot"</span>)</span><br><span class="line">                .setSmallIcon(R.drawable.ic_notification)</span><br><span class="line">                .setContentTitle(title)</span><br><span class="line">                .setContentText(text)</span><br><span class="line">                .setPriority(NotificationCompat.PRIORITY_DEFAULT);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Issue the notification.</span></span><br><span class="line">        notificationManager.notify(<span class="number">0</span>, builder.build());</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+
+<p>In the provided code snippet:</p>
+<ol>
+<li>When the <code>ACTION_BOOT_COMPLETED</code> event is received, <code>scheduleDataSync()</code> is called to schedule a data synchronization task. This could be done using Android’s <code>JobScheduler</code>, <code>AlarmManager</code>, or <code>WorkManager</code> APIs.</li>
+<li>A notification is sent to the user indicating that the device has booted and data synchronization will start soon. This is handled by <code>sendBootNotification()</code> method.</li>
+</ol>
+<p>Remember, the <code>onReceive()</code> method runs on the main thread of your application, and you should not perform long-running operations there. If you need to do substantial work, start a service or use <code>WorkManager</code> to offload that work to a background thread. Also, <code>onReceive()</code> has a time limit of about 10 seconds; exceeding this limit can result in the app being killed by the system.</p>
+</article><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/courses/">courses</a><a class="post-meta__tags" href="/tags/NEU/">NEU</a></div><div class="post_share"></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/220fded6.html" title="CS5520-Week7-Data-Storage"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">CS5520-Week7-Data-Storage</div></div></a></div><div class="next-post pull-right"><a href="/posts/ddb229a0.html" title="CS5520-Week8-Firebase"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">CS5520-Week8-Firebase</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/posts/583767e1.html" title="CS5520-Week3-Views"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-02-26</div><div class="title">CS5520-Week3-Views</div></div></a></div><div><a href="/posts/65b8cddc.html" title="CS5520-Week2"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-02-26</div><div class="title">CS5520-Week2</div></div></a></div><div><a href="/posts/5a0e3f5d.html" title="CS5520-Week4-Intents-RecyclerView"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-02-26</div><div class="title">CS5520-Week4-Intents-RecyclerView</div></div></a></div><div><a href="/posts/a851c51c.html" title="CS5520-Week6-Networking"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-02-26</div><div class="title">CS5520-Week6-Networking</div></div></a></div><div><a href="/posts/220fded6.html" title="CS5520-Week7-Data-Storage"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-02-26</div><div class="title">CS5520-Week7-Data-Storage</div></div></a></div><div><a href="/posts/ddb229a0.html" title="CS5520-Week8-Firebase"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-02-26</div><div class="title">CS5520-Week8-Firebase</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/images/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Ruobing Wang</div><div class="author-info__description">Work Hard, Play Harder</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">59</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">52</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">5</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/ruobing1997"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Ruobing1997" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://www.linkedin.com/in/robin97/" target="_blank" title="Linkedin"><i class="fab fa-linkedin"></i></a><a class="social-icon" href="https://www.instagram.com/ruobingwang123/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a><a class="social-icon" href="mailto:ruobing2@andrew.cmu.edu" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Week-5-Threads-AsyncTask-Broadcast"><span class="toc-number">1.</span> <span class="toc-text">Week 5 - Threads, AsyncTask, Broadcast</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Android-Threads"><span class="toc-number">2.</span> <span class="toc-text">Android Threads</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Android-Components"><span class="toc-number">2.1.</span> <span class="toc-text">Android Components:</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Activities%EF%BC%88%E6%B4%BB%E5%8A%A8%EF%BC%89"><span class="toc-number">2.1.1.</span> <span class="toc-text">Activities（活动）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Services%EF%BC%88%E6%9C%8D%E5%8A%A1%EF%BC%89"><span class="toc-number">2.1.2.</span> <span class="toc-text">Services（服务）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Broadcast-Receivers%EF%BC%88%E5%B9%BF%E6%92%AD%E6%8E%A5%E6%94%B6%E5%99%A8%EF%BC%89"><span class="toc-number">2.1.3.</span> <span class="toc-text">Broadcast Receivers（广播接收器）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Process-Heirarchy"><span class="toc-number">2.2.</span> <span class="toc-text">Process Heirarchy</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Java-Runnable-Threads"><span class="toc-number">3.</span> <span class="toc-text">Java Runnable - Threads</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E5%BC%A0%E5%9B%BE%EF%BC%9ATrajectories-in-Progress-Graphs"><span class="toc-number">3.0.1.</span> <span class="toc-text">第一张图：Trajectories in Progress Graphs</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E5%BC%A0%E5%9B%BE%EF%BC%9ACritical-Sections-and-Unsafe-Regions"><span class="toc-number">3.0.2.</span> <span class="toc-text">第二张图：Critical Sections and Unsafe Regions</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E5%BC%A0%E5%9B%BE%EF%BC%9ACritical-Sections-and-Unsafe-Regions-with-Safe-Trajectory"><span class="toc-number">3.0.3.</span> <span class="toc-text">第三张图：Critical Sections and Unsafe Regions with Safe Trajectory</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">3.0.4.</span> <span class="toc-text">总结</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BD%A8%E8%BF%B9%EF%BC%88Trajectory%EF%BC%89"><span class="toc-number">3.0.5.</span> <span class="toc-text">轨迹（Trajectory）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E9%94%AE%E9%83%A8%E5%88%86%EF%BC%88Critical-Section%EF%BC%89"><span class="toc-number">3.0.6.</span> <span class="toc-text">关键部分（Critical Section）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8D%E5%AE%89%E5%85%A8%E5%8C%BA%E5%9F%9F%EF%BC%88Unsafe-Region%EF%BC%89"><span class="toc-number">3.0.7.</span> <span class="toc-text">不安全区域（Unsafe Region）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E5%85%A8%E8%BD%A8%E8%BF%B9%EF%BC%88Safe-Trajectory%EF%BC%89"><span class="toc-number">3.0.8.</span> <span class="toc-text">安全轨迹（Safe Trajectory）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88"><span class="toc-number">3.0.9.</span> <span class="toc-text">为什么</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#wait"><span class="toc-number">3.0.10.</span> <span class="toc-text">wait()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#notify"><span class="toc-number">3.0.11.</span> <span class="toc-text">notify()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#notifyAll"><span class="toc-number">3.0.12.</span> <span class="toc-text">notifyAll()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E7%A4%BA%E4%BE%8B"><span class="toc-number">3.0.13.</span> <span class="toc-text">使用示例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E8%AF%BB%E9%94%81%EF%BC%88Read-Lock%EF%BC%89"><span class="toc-number">3.0.14.</span> <span class="toc-text">为什么需要读锁（Read Lock）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%9C%E7%94%A8"><span class="toc-number">3.0.15.</span> <span class="toc-text">作用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AD%A3%E7%A1%AE%E7%9A%84%E9%94%81%E9%87%8A%E6%94%BE"><span class="toc-number">3.0.16.</span> <span class="toc-text">正确的锁释放</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%A7%E6%89%BF-Thread-%E7%B1%BB"><span class="toc-number">3.0.17.</span> <span class="toc-text">继承 Thread 类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0-Runnable-%E6%8E%A5%E5%8F%A3"><span class="toc-number">3.0.18.</span> <span class="toc-text">实现 Runnable 接口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%A7%E6%89%BF-Thread-%E7%B1%BB-vs-%E5%AE%9E%E7%8E%B0-Runnable-%E6%8E%A5%E5%8F%A3"><span class="toc-number">3.0.19.</span> <span class="toc-text">继承 Thread 类 vs 实现 Runnable 接口</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Runnable"><span class="toc-number">3.1.</span> <span class="toc-text">Runnable:</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89"><span class="toc-number">3.1.1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0"><span class="toc-number">3.1.2.</span> <span class="toc-text">实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8"><span class="toc-number">3.1.3.</span> <span class="toc-text">使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%98%E7%82%B9"><span class="toc-number">3.1.4.</span> <span class="toc-text">优点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8E-Callable-%E7%9A%84%E6%AF%94%E8%BE%83"><span class="toc-number">3.1.5.</span> <span class="toc-text">与 Callable 的比较</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Threading-in-Android"><span class="toc-number">3.2.</span> <span class="toc-text">Threading in Android</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Process-in-Android"><span class="toc-number">3.2.1.</span> <span class="toc-text">Process in Android:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Thread-in-Android"><span class="toc-number">3.2.2.</span> <span class="toc-text">Thread in Android:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Competition-and-Scheduling"><span class="toc-number">3.2.3.</span> <span class="toc-text">Competition and Scheduling:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Android%E2%80%99s-Thread-Management"><span class="toc-number">3.2.4.</span> <span class="toc-text">Android’s Thread Management:</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AsynchTask"><span class="toc-number">3.3.</span> <span class="toc-text">AsynchTask</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Broadcast-Receivers"><span class="toc-number">3.4.</span> <span class="toc-text">Broadcast Receivers</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#BroadcastReceiver"><span class="toc-number">3.4.1.</span> <span class="toc-text">BroadcastReceiver</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IntentFilter"><span class="toc-number">3.4.2.</span> <span class="toc-text">IntentFilter</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Registration"><span class="toc-number">3.4.3.</span> <span class="toc-text">Registration</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/8d46c231.html" title="队列和栈"><img src="/posts/8d46c231.html%E9%98%9F%E5%88%97%E5%92%8C%E6%A0%88_Cover.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="队列和栈"/></a><div class="content"><a class="title" href="/posts/8d46c231.html" title="队列和栈">队列和栈</a><time datetime="2024-05-15T04:17:52.593Z" title="Updated 2024-05-15 00:17:52">2024-05-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/a0ebfa60.html" title="面试经验集合"><img src="/posts/a0ebfa60.htmlinterview_cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="面试经验集合"/></a><div class="content"><a class="title" href="/posts/a0ebfa60.html" title="面试经验集合">面试经验集合</a><time datetime="2024-05-15T04:17:52.593Z" title="Updated 2024-05-15 00:17:52">2024-05-15</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By Ruobing Wang</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"></div><script type="text/javascript" src="https://cdn1.tianli0.top/npm/jquery@latest/dist/jquery.min.js"></script><script async src="/config/js/categoryBar.js"></script><script src="/js/nav.js"></script><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></body></html>
