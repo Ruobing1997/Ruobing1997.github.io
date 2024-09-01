@@ -1,0 +1,356 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>前置知识 | Robin's Blog</title><meta name="author" content="Ruobing Wang"><meta name="copyright" content="Ruobing Wang"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="工程类基本知识查阅">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前置知识">
+<meta property="og:url" content="http://ruobingw.com/posts/%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86/index.html">
+<meta property="og:site_name" content="Robin&#39;s Blog">
+<meta property="og:description" content="工程类基本知识查阅">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://ruobingw.com/posts/%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86/cover.jpeg">
+<meta property="article:published_time" content="2023-11-19T20:03:20.000Z">
+<meta property="article:modified_time" content="2024-05-15T04:17:52.573Z">
+<meta property="article:author" content="Ruobing Wang">
+<meta property="article:tag" content="UML">
+<meta property="article:tag" content="关系">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://ruobingw.com/posts/%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86/cover.jpeg"><link rel="shortcut icon" href="/images/logo.png"><link rel="canonical" href="http://ruobingw.com/posts/%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-54HWWM1WE5"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-54HWWM1WE5');
+</script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":300},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"Author: Ruobing Wang","link":"Link: ","source":"Source: Robin's Blog","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '前置知识',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-05-15 00:17:52'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/config/css/categoryBar.css" type="text/css"><link rel="stylesheet" href="/config/css/nav.css" type="text/css"><meta name="generator" content="Hexo 6.3.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="Robin's Blog" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/images/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">59</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">52</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">5</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-address-card"></i><span> About</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-book"></i><span> Articles</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url('/posts/%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86/cover.jpeg')"><nav id="nav"><span id="blog-info"><a href="/" title="Robin's Blog"><span class="site-name">Robin's Blog</span></a></span><div id="menus"></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-address-card"></i><span> About</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-book"></i><span> Articles</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></li></ul></div></div><center id="name-container"><a id="page-name" href="javascript:scrollToTop()">PAGE_NAME</a></center><div id="nav-right"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i></a></div><div id="toggle-menu"> <a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">前置知识</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2023-11-19T20:03:20.000Z" title="Created 2023-11-19 15:03:20">2023-11-19</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2024-05-15T04:17:52.573Z" title="Updated 2024-05-15 00:17:52">2024-05-15</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%B7%A5%E7%A8%8B%E7%B1%BB/">工程类</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="前置知识"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h1><p>目前经典的设计模式有22个</p>
+<h1 id="关键术语"><a href="#关键术语" class="headerlink" title="关键术语"></a>关键术语</h1><h2 id="面向对象基础"><a href="#面向对象基础" class="headerlink" title="面向对象基础"></a>面向对象基础</h2><p>老四样：</p>
+<ul>
+<li>抽象</li>
+<li>封装</li>
+<li>多态</li>
+<li>继承</li>
+</ul>
+<h3 id="抽象"><a href="#抽象" class="headerlink" title="抽象"></a>抽象</h3><p>根据真实世界对象来设计程序中的对象。程序中的对象并不需要能够百分之百准确地反映其原型 （极少情况下才需要做到这一点）。 实际上， 「对象只需模拟真实对象的特定属性和行为即可」</p>
+<h3 id="封装"><a href="#封装" class="headerlink" title="封装"></a>封装</h3><p>细节都被隐藏起来，能够交互的只有提供的「接口」</p>
+<p>封装：一个对象对其他对象隐藏部分状态和行为，而仅向程序其他部分暴露有限的借口的能力</p>
+<p>比如<code>private</code> <code>protected</code></p>
+<p><img src="/posts/%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86/%E5%B0%81%E8%A3%85_1.png" alt="封装_1"></p>
+<h3 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h3><p>根据已有类创建新类的能力，具体作用在于代码复用</p>
+<p>“使用继承后， 子类将拥有与其父类相同的接口。 如果父类中声明了某个方法， 那么你将无法在子类中隐藏该方法。 你还<strong>必须实现所有</strong>的抽象方法， 即使它们对于你的子类而言没有意义。 ”</p>
+<p><img src="/posts/%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86/%E7%BB%A7%E6%89%BF_1.png" alt="继承_1"></p>
+<h3 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h3><p>声明为抽象。 这让我们得以忽略父类中该方法的所有默认实现， 从而强制要求所有子类自行提供该方法的实现。子类重写超类的方法</p>
+<p><img src="/posts/%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86/%E5%A4%9A%E6%80%81_1.png" alt="多态_1"></p>
+<p>多态的特殊机制使得程序可以追踪对象的子类并调用其方法， 从而执行恰当的行为。<br>多态是指程序能够检测对象所属的实际类， 并在当前上下文不知道其真实类型的情况下调用其实现的能力。<br>可将多态看作是一个对象 “假扮” 为其他东西 （通常是其扩展的类或实现的接口） 的能力。 在我们的示例中， 袋中的狗和猫就相当于是假扮成了一般的动物。”</p>
+<h2 id="关系"><a href="#关系" class="headerlink" title="关系"></a>关系</h2><p>关系分为：</p>
+<ul>
+<li>依赖</li>
+<li>关联</li>
+<li>聚合</li>
+<li>组合</li>
+</ul>
+<h3 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h3><p>是「最基础，最微弱」的关系类型</p>
+<p>如果修改一个类的定义可能会造成另一个类的变化。那么就说这两个类之间有依赖关系。</p>
+<blockquote>
+<p>通过让代码依赖「接口」或「抽象类」从而降低依赖程度</p>
+</blockquote>
+<blockquote>
+<p> UML 不会展示所有依赖，仅展示对于沟通想法来说的重要的依赖关系</p>
+</blockquote>
+<p>用 <code>虚线箭头</code> 来表示</p>
+<p><img src="/posts/%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86/%E5%85%B3%E7%B3%BB_%E4%BE%9D%E8%B5%961.png" alt="关系_依赖1"></p>
+<h3 id="关联"><a href="#关联" class="headerlink" title="关联"></a>关联</h3><p>一个对象使用另一个对象 或 与另一个对象进行交互的关系</p>
+<p>关联 是一种特殊的依赖，一个对象总有访问与其交互对象的权限</p>
+<p>一般使用 关联 来表示类似于 <code>成员变量</code> 的东西，这个关系将一直存在。</p>
+<p><img src="/posts/%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86/%E5%85%B3%E7%B3%BB_%E5%85%B3%E8%81%941.png" alt="关系_关联1"></p>
+<h3 id="依赖-vs-关联"><a href="#依赖-vs-关联" class="headerlink" title="依赖 vs 关联"></a>依赖 vs 关联</h3><figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span>&nbsp;<span class="title class_">Professor</span>&nbsp;is</span><br><span class="line">&nbsp;&nbsp;field Student&nbsp;student</span><br><span class="line">&nbsp;&nbsp;<span class="comment">//&nbsp;...</span></span><br><span class="line">&nbsp;&nbsp;method&nbsp;<span class="title function_">teach</span><span class="params">(Course&nbsp;c)</span>&nbsp;is</span><br><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//&nbsp;...</span></span><br><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="built_in">this</span>.student.remember(c.getKnowledge())</span><br></pre></td></tr></tbody></table></figure>
+
+<p>而Course 作为 一个参数，Course 是作为 依赖</p>
+<p>Student 是 Professor 的一个成员变量，Student 类 是 Professor 的 不仅是 <code>依赖</code> 而上升为 <code>关联</code></p>
+<h3 id="聚合"><a href="#聚合" class="headerlink" title="聚合"></a>聚合</h3><p>一般表示 一对多 多对多 整体对部分</p>
+<p>一个对象拥有 一组其他对象，扮演容器和集合的角色。</p>
+<p>组建可以独立于容器，也可以同时链接多个容器。</p>
+<p>表示：</p>
+<p><img src="/posts/%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86/%E5%85%B3%E7%B3%BB_%E8%81%9A%E5%90%881.png" alt="关系_聚合1"></p>
+<h3 id="组合"><a href="#组合" class="headerlink" title="组合"></a>组合</h3><p>组合是一种特殊的聚合，对象由 一个或多个其他对象实例构成。组件仅能作为容器的一部分存在</p>
+<p><img src="/posts/%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86/%E5%85%B3%E7%B3%BB_%E7%BB%84%E5%90%881.png" alt="关系_组合1"></p>
+<h3 id="聚合-vs-组合"><a href="#聚合-vs-组合" class="headerlink" title="聚合 vs 组合"></a>聚合 vs 组合</h3><p>比如 大学 嘎 则 院系 消失 因为 大学管理院系的生命周期</p>
+<p>但是 院系 嘎 教授 不一定会 嘎，因为 是聚合关系</p>
+<p>组合使得两个 tight 的更紧了</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p><img src="/posts/%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86/%E5%85%B3%E7%B3%BB%E6%80%BB%E7%BB%93.png" alt="关系总结"></p>
+<ul>
+<li>依赖： 对类 B 进行修改会影响到类 A 。 </li>
+<li>关联： 对象 A 知道对象 B。 类 A 依赖于类 B。 </li>
+<li>聚合： 对象 A 知道对象 B 且由 B 构成。 类 A 依赖于类 B。 </li>
+<li>组合： 对象 A 知道对象 B、 <strong>由 B 构成而且管理着 B 的生命周期</strong>。 类 A 依赖于类 B。</li>
+</ul>
+<h1 id="设计模式-1"><a href="#设计模式-1" class="headerlink" title="设计模式"></a>设计模式</h1><h2 id="算法-vs-设计模式"><a href="#算法-vs-设计模式" class="headerlink" title="算法 vs 设计模式"></a>算法 vs 设计模式</h2><p>算法：明确定义达成特定目标的所需一系列步骤。像一道菜谱：提供达成目标的「明确」步骤</p>
+<p>模式：解决方案的更高层次描述。像蓝图：知道最终结果和功能，自己确定如何实现的步骤</p>
+<h2 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h2><ul>
+<li><p>创建型</p>
+<ul>
+<li>“提供创建对象的机制， 增加已有代码的灵活性和可复用性”</li>
+</ul>
+</li>
+<li><p>结构型</p>
+<ul>
+<li>“对象和类组装成较大的结构， 并同时保持结构的灵活和高效。”</li>
+</ul>
+</li>
+<li><p>行为</p>
+<ul>
+<li>“行为模式负责对象间的高效沟通和职责委派。”</li>
+</ul>
+</li>
+</ul>
+<h1 id="软件设计原则"><a href="#软件设计原则" class="headerlink" title="软件设计原则"></a>软件设计原则</h1><h2 id="代码复用"><a href="#代码复用" class="headerlink" title="代码复用"></a>代码复用</h2><p>从 类 转向 模式 再到 框架，复用程度不断增加</p>
+<p>模式提供的复用方式比框架风险小。</p>
+<h2 id="扩展性"><a href="#扩展性" class="headerlink" title="扩展性"></a>扩展性</h2><p>需要应对未来可能发生的变化来提供具有可扩展性的代码</p>
+<h2 id="设计原则"><a href="#设计原则" class="headerlink" title="设计原则"></a>设计原则</h2><p>从而保证灵活的设计</p>
+<h2 id="封装变化的内容"><a href="#封装变化的内容" class="headerlink" title="封装变化的内容"></a>封装变化的内容</h2><p>定位程序中的变化内容并与不变的内容分开从而使得将变更造成的影响最小化</p>
+<p>封装掉变化的内容从而可以保护其他代码不受负面影响。</p>
+<h3 id="封装方法"><a href="#封装方法" class="headerlink" title="封装方法"></a>封装方法</h3><p><img src="/posts/%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86/%E6%96%B9%E6%B3%95%E5%B0%81%E8%A3%85.png" alt="方法封装"></p>
+<p>将计算税金的逻辑抽取到一个单独的方法中， 并对原始方法隐藏该逻辑</p>
+<p><img src="/posts/%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86/%E6%96%B9%E6%B3%95%E5%B0%81%E8%A3%852.png" alt="方法封装2"></p>
+<p>隔离后就可以只修改getTaxrate的逻辑，并且如果税率计算逻辑变得过于复杂， 也能更方便地将其移动到独立的类中。</p>
+<h3 id="封装类"><a href="#封装类" class="headerlink" title="封装类"></a>封装类</h3><p>新增行为通常还会带来助手成员变量和方法，将这些内容抽出来到一个新类中</p>
+<p><img src="/posts/%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86/%E7%B1%BB%E5%B0%81%E8%A3%85.png" alt="类封装"></p>
+<p><img src="/posts/%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86/%E7%B1%BB%E5%B0%81%E8%A3%852.png" alt="类封装2"></p>
+<h2 id="面向接口进行开发"><a href="#面向接口进行开发" class="headerlink" title="面向接口进行开发"></a>面向接口进行开发</h2><p>这样的好处是，我们依赖的是抽象类型而不是具体类</p>
+<ul>
+<li>确定一个对象对另一对象的确切需求： 它需执行哪些方法？ </li>
+<li>在一个新的接口或抽象类中描述这些方法。 </li>
+<li>让被依赖的类实现该接口。 </li>
+<li>现在让有需求的类依赖于这个接口， 而不依赖于具体的类。 你仍可与原始类中的对象进行互动， 但现在其连接将会灵活得多。</li>
+</ul>
+<p><img src="/posts/%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86/%E9%9D%A2%E5%90%91%E6%8E%A5%E5%8F%A3%E5%BC%80%E5%8F%91.png" alt="面向接口开发"></p>
+<h2 id="组合优于继承"><a href="#组合优于继承" class="headerlink" title="组合优于继承"></a>组合优于继承</h2><p>继承有比较多的缺点：</p>
+<ul>
+<li><p>子类不能减少超类的接口。 你必须实现父类中所有的抽象方法， 即使它们没什么用。 </p>
+</li>
+<li><p>在重写方法时， 你需要确保新行为与其基类中的版本兼容。 这一点很重要， 因为子类的所有对象都可能被传递给以超类对象为参数的任何代码， 相信你不会希望这些代码崩溃的。 </p>
+</li>
+<li><p>继承打破了超类的封装， 因为子类拥有访问父类内部详细内容的权限。 此外还可能会有相反的情况出现， 那就是程序员为了进一步扩展的方便而让超类知晓子类的内部详细内容。 </p>
+</li>
+<li><p>子类与超类紧密耦合。 超类中的任何修改都可能会破坏子类的功能。 </p>
+</li>
+<li><p>通过继承复用代码可能导致平行继承体系的产生。 继承通常仅发生在一个维度中。 只要出现了两个以上的维度， 你就必须创建数量巨大的类组合， 从而使类层次结构膨胀到不可思议的程度</p>
+</li>
+</ul>
+<p>总结：复写所有抽象方法 + 兼容性 + 打破封装 + 增加耦合 + 类层次膨胀</p>
+<p><strong>组合是代替继承的一种方法</strong>。 继承代表类之间的 “是” 关系 （汽车是交通工具）， 而组合则代表 “有” 关系 （汽车有一个引擎）。</p>
+<p>这个原则也能应用于<strong>聚合</strong> （一种更松弛的组合变体， 一个对象可引用另一个对象， 但并不管理其生命周期）。 例如： 一辆汽车上有司机， 但是司机也可能会使用另一辆汽车， 或者选择步行而不使用汽车。</p>
+<h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><p><img src="/posts/%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86/%E7%BB%84%E5%90%88%E4%BC%98%E4%BA%8E%E7%BB%A7%E6%89%BF1.png" alt="组合优于继承1"></p>
+<p>类越来越多</p>
+<p>可以通过进行 组/聚 合优化：</p>
+<p><img src="/posts/%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86/%E7%BB%84%E5%90%88%E4%BC%98%E4%BA%8E%E7%BB%A7%E6%89%BF2.png" alt="组合优于继承2"></p>
+<h2 id="SOLID"><a href="#SOLID" class="headerlink" title="SOLID"></a>SOLID</h2><p>SOLID 五原则 让软件设计更易于理解、 更加灵活和更易于维护的五个原则的简称。</p>
+<h3 id="「S」ingle-Responsibility-Principle-单一职责原则"><a href="#「S」ingle-Responsibility-Principle-单一职责原则" class="headerlink" title="「S」ingle Responsibility Principle 单一职责原则"></a>「S」ingle Responsibility Principle 单一职责原则</h3><p>每一个类应当只负责软件中的一个功能，并将其完全封装在该类中。</p>
+<p>使用场景：“开始感觉在同时关注程序特定方面的内容时有些困难的话， 请回忆单一职责原则并考虑现在是否应将某些类分割为几个部分。”</p>
+<p>例子：</p>
+<p><img src="/posts/%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86/%E5%8D%95%E4%B8%80%E8%81%8C%E8%B4%A3%E5%8E%9F%E5%88%991.png" alt="单一职责原则1"></p>
+<p><img src="/posts/%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86/%E5%8D%95%E4%B8%80%E8%81%8C%E8%B4%A3%E5%8E%9F%E5%88%992.png" alt="单一职责原则2"></p>
+<h3 id="「O」pen-x2F-closed-Principle-开闭原则"><a href="#「O」pen-x2F-closed-Principle-开闭原则" class="headerlink" title="「O」pen/closed Principle 开闭原则"></a>「O」pen/closed Principle 开闭原则</h3><p>对于扩展，类应当 「开放」，对于修改，类应该「封闭」</p>
+<p>实现新功能时保持已有代码不变</p>
+<p>开放：对一个类扩展时可以创建它的子类并对其做任何事情，比如新增方法，重写方法。</p>
+<p>封闭：比如字段设置了 <code>final</code> 从而限制了扩展，那么就不是开放，并且如果一个类做好了充分的准备来使得其他类能够使用，即接口明确定义不会修改，那么该类就是封闭/完整</p>
+<p><img src="/posts/%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86/%E5%BC%80%E9%97%AD%E5%8E%9F%E5%88%991.png" alt="开闭原则1"></p>
+<p><img src="/posts/%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86/%E5%BC%80%E9%97%AD%E5%8E%9F%E5%88%992.png" alt="开闭原则2"></p>
+<p>现在当需要实现新的运输方式那么<code>扩展</code> <code>Shipping</code>接口创建新类即可，订单在这里就不会被破坏，属于封闭。</p>
+<h3 id="「L」iskov-Substitution-Principle-里氏替换原则"><a href="#「L」iskov-Substitution-Principle-里氏替换原则" class="headerlink" title="「L」iskov Substitution Principle 里氏替换原则"></a>「L」iskov Substitution Principle 里氏替换原则</h3><p>扩展类时，应该要能在<strong>不修改客户端代码的情况下</strong>将<strong>子类的对象作为父类对象</strong>进行传递。其意味着子类需要和父类行为兼容，重写方法时，对基类进行 <code>扩展</code> 而不是进行<code>替换</code></p>
+<p>这个原则是用于<strong>预测子类是否与代码兼容</strong>。是否能与其超类对象协作的一组检查。主要服务于开发程序库和框架时。</p>
+<p>举个例子，假设你有一个父类 <code>Bird</code> 和一个继承自 <code>Bird</code> 的子类 <code>Sparrow</code>。</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Bird</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">fly</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"Bird is flying"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Sparrow</span>(<span class="title class_ inherited__">Bird</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">fly</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"Sparrow is flying"</span>)</span><br></pre></td></tr></tbody></table></figure>
+
+<p>在这个例子中，<code>Sparrow</code> 是 <code>Bird</code> 的子类，并且重写了 <code>fly</code> 方法。根据里氏替换原则，任何期望 <code>Bird</code> 类型对象的代码都应该能够接受 <code>Sparrow</code> 对象，而不需要做任何改变。</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">let_it_fly</span>(<span class="params">bird: Bird</span>):</span><br><span class="line">    bird.fly()</span><br><span class="line"></span><br><span class="line">sparrow = Sparrow()</span><br><span class="line">let_it_fly(sparrow)  <span class="comment"># 这里传递了一个 Sparrow 对象</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>在这段代码中，<code>let_it_fly</code> 函数接受一个 <code>Bird</code> 类型的对象，并调用它的 <code>fly</code> 方法。由于 <code>Sparrow</code> 是 <code>Bird</code> 的子类，我们可以创建一个 <code>Sparrow</code> 对象并将其传递给 <code>let_it_fly</code> 函数。根据里氏替换原则，这应该能够正常工作，因为 <code>Sparrow</code> 完全兼容 <code>Bird</code> 类的接口。</p>
+<p>需要有一些对于子类的形式要求：</p>
+<ul>
+<li><p>“子类方法的参数类型必须与其超类的参数类型相匹配或更加抽象”</p>
+<ul>
+<li>“假设某个类有个方法用于给猫咪喂食：  <strong>feed­(Cat c)</strong> 。 客户端代码总是会将 “猫 （cat）” 对象传递给该方法。 </li>
+<li>好的方式： 假如你创建了一个子类并重写了前面的方法， 使其能够给任何 “动物 （ani­mal， 即 ‘猫’ 的超类）” 喂食：  <strong>feed­(Animal c)</strong> 。 如果现在你将一个子类对象而非超类对象传递给客户端代码， 程序仍将正常工作。 该方法可用于给任何动物喂食， 因此它仍然可以用于给传递给客户端的任何 “猫” 喂食。 </li>
+<li>不好的方式： 你创建了另一个子类且限制喂食方法仅接受 “孟加拉猫 （Ben­gal­Cat， 一个 ‘猫’ 的子类）”：  feed­(Bengal­Cat c) 。 如果你用它来替代链接在某个对象中的原始类，客户端中会发生什么呢？ 由于该方法只能对特殊种类的猫进行喂食， 因此无法为传递给客户端的普通猫提供服务， 从而将破坏所有相关的功能。</li>
+</ul>
+</li>
+<li><p>“子类方法的返回值类型必须与超类方法的返回值类型或是其子类别相匹配。 正如你所看到的， 对于返回值类型的要求与对于参数类型的要求相反。”</p>
+<blockquote>
+<p>return 越具体越好<br>parameters 越抽象越好</p>
+</blockquote>
+<ul>
+<li>假设buyCat() : Cat, 返回猫</li>
+<li>好：重写为 buyCat(): BengalCat </li>
+<li>不好：重写为 buyCat(): Animal</li>
+</ul>
+</li>
+<li><p>异常类型必须与基础方法的异常或者子类相匹配</p>
+</li>
+<li><p>子类不应该加强前置条件，也不能削弱后置条件</p>
+</li>
+<li><p>超类的不变量需要保留</p>
+</li>
+<li><p>子类不能修改超类中私有变量的值</p>
+</li>
+</ul>
+<h3 id="「I」terface-Segregation-Principle-接口隔离原则"><a href="#「I」terface-Segregation-Principle-接口隔离原则" class="headerlink" title="「I」terface Segregation Principle 接口隔离原则"></a>「I」terface Segregation Principle 接口隔离原则</h3><p>客户端不应该强迫依赖于其不使用的方法。</p>
+<p>应该提升细粒度将导致臃肿的方法分割给其他接口：</p>
+<p><img src="/posts/%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86/%E6%8E%A5%E5%8F%A3%E9%9A%94%E7%A6%BB%E5%8E%9F%E5%88%991.png" alt="接口隔离原则1"></p>
+<h3 id="「D」ependency-Inversion-Principle-依赖倒置原则"><a href="#「D」ependency-Inversion-Principle-依赖倒置原则" class="headerlink" title="「D」ependency Inversion Principle 依赖倒置原则"></a>「D」ependency Inversion Principle 依赖倒置原则</h3><p>高层次的类不应该依赖于低层次的类。 两者都应该依赖于抽象接口。 抽象接口不应依赖于具体实现。 具体实现应该依赖于抽象接口。</p>
+<ul>
+<li>低层次的类实现基础操作 （例如磁盘操作、 传输网络数据和连接数据库等）。 </li>
+<li>高层次类包含复杂业务逻辑以指导低层次类执行特定操作。</li>
+</ul>
+<p>依赖倒置原则建议改变这种依赖方式。 </p>
+<p>作为初学者， 你最好使用业务术语来对高层次类依赖的低层次操作接口进行描述。 例如， 业务逻辑应该调用名为 open­Report­(file)的方法， 而不是 open­File­(x) 、  read­Bytes­(n)和 close­File­(x)等一系列方法。 这些接口被视为是高层次的。<br>现在你可基于这些接口创建高层次类， 而不是基于低层次的具体类。 这要比原始的依赖关系灵活很多。<br>一旦低层次的类实现了这些接口， 它们将依赖于业务逻辑层， 从而倒置了原始的依赖关系。 </p>
+<p>依赖倒置原则通常和开闭原则共同发挥作用： 你无需修改已有类就能用不同的业务逻辑类扩展低层次的类。</p>
+<p>修改前，高层次 <code>BudgetReport</code> 依赖于 低层次的 数据库操作方法，如果数据库的版本或者功能发生改变，那么<code>BudgeReport</code>就可能不能工作：</p>
+<p><img src="/posts/%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86/%E4%BE%9D%E8%B5%96%E5%80%92%E7%BD%AE%E5%8E%9F%E5%88%99.png" alt="依赖倒置原则"></p>
+</article><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/UML/">UML</a><a class="post-meta__tags" href="/tags/%E5%85%B3%E7%B3%BB/">关系</a></div><div class="post_share"></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/Mobile-App-Development/" title="Mobile App Development"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">Mobile App Development</div></div></a></div><div class="next-post pull-right"><a href="/posts/Code-Refactor/" title="Code-Refactor"><img class="cover" src="/posts/Code-Refactor/Code-Refactor-Cover.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">Code-Refactor</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/images/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Ruobing Wang</div><div class="author-info__description">Work Hard, Play Harder</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">59</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">52</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">5</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/ruobing1997"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Ruobing1997" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://www.linkedin.com/in/robin97/" target="_blank" title="Linkedin"><i class="fab fa-linkedin"></i></a><a class="social-icon" href="https://www.instagram.com/ruobingwang123/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a><a class="social-icon" href="mailto:ruobing2@andrew.cmu.edu" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.</span> <span class="toc-text">设计模式</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%B3%E9%94%AE%E6%9C%AF%E8%AF%AD"><span class="toc-number">2.</span> <span class="toc-text">关键术语</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E5%9F%BA%E7%A1%80"><span class="toc-number">2.1.</span> <span class="toc-text">面向对象基础</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8A%BD%E8%B1%A1"><span class="toc-number">2.1.1.</span> <span class="toc-text">抽象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%81%E8%A3%85"><span class="toc-number">2.1.2.</span> <span class="toc-text">封装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%A7%E6%89%BF"><span class="toc-number">2.1.3.</span> <span class="toc-text">继承</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%9A%E6%80%81"><span class="toc-number">2.1.4.</span> <span class="toc-text">多态</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E7%B3%BB"><span class="toc-number">2.2.</span> <span class="toc-text">关系</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%9D%E8%B5%96"><span class="toc-number">2.2.1.</span> <span class="toc-text">依赖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E8%81%94"><span class="toc-number">2.2.2.</span> <span class="toc-text">关联</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%9D%E8%B5%96-vs-%E5%85%B3%E8%81%94"><span class="toc-number">2.2.3.</span> <span class="toc-text">依赖 vs 关联</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%81%9A%E5%90%88"><span class="toc-number">2.2.4.</span> <span class="toc-text">聚合</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%84%E5%90%88"><span class="toc-number">2.2.5.</span> <span class="toc-text">组合</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%81%9A%E5%90%88-vs-%E7%BB%84%E5%90%88"><span class="toc-number">2.2.6.</span> <span class="toc-text">聚合 vs 组合</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">2.2.7.</span> <span class="toc-text">总结</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-1"><span class="toc-number">3.</span> <span class="toc-text">设计模式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%97%E6%B3%95-vs-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"><span class="toc-number">3.1.</span> <span class="toc-text">算法 vs 设计模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E7%B1%BB"><span class="toc-number">3.2.</span> <span class="toc-text">分类</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99"><span class="toc-number">4.</span> <span class="toc-text">软件设计原则</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%A4%8D%E7%94%A8"><span class="toc-number">4.1.</span> <span class="toc-text">代码复用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%A9%E5%B1%95%E6%80%A7"><span class="toc-number">4.2.</span> <span class="toc-text">扩展性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99"><span class="toc-number">4.3.</span> <span class="toc-text">设计原则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%81%E8%A3%85%E5%8F%98%E5%8C%96%E7%9A%84%E5%86%85%E5%AE%B9"><span class="toc-number">4.4.</span> <span class="toc-text">封装变化的内容</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%81%E8%A3%85%E6%96%B9%E6%B3%95"><span class="toc-number">4.4.1.</span> <span class="toc-text">封装方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%81%E8%A3%85%E7%B1%BB"><span class="toc-number">4.4.2.</span> <span class="toc-text">封装类</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%A2%E5%90%91%E6%8E%A5%E5%8F%A3%E8%BF%9B%E8%A1%8C%E5%BC%80%E5%8F%91"><span class="toc-number">4.5.</span> <span class="toc-text">面向接口进行开发</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%84%E5%90%88%E4%BC%98%E4%BA%8E%E7%BB%A7%E6%89%BF"><span class="toc-number">4.6.</span> <span class="toc-text">组合优于继承</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%8B%E5%AD%90"><span class="toc-number">4.6.1.</span> <span class="toc-text">例子</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SOLID"><span class="toc-number">4.7.</span> <span class="toc-text">SOLID</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E3%80%8CS%E3%80%8Dingle-Responsibility-Principle-%E5%8D%95%E4%B8%80%E8%81%8C%E8%B4%A3%E5%8E%9F%E5%88%99"><span class="toc-number">4.7.1.</span> <span class="toc-text">「S」ingle Responsibility Principle 单一职责原则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E3%80%8CO%E3%80%8Dpen-x2F-closed-Principle-%E5%BC%80%E9%97%AD%E5%8E%9F%E5%88%99"><span class="toc-number">4.7.2.</span> <span class="toc-text">「O」pen&#x2F;closed Principle 开闭原则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E3%80%8CL%E3%80%8Diskov-Substitution-Principle-%E9%87%8C%E6%B0%8F%E6%9B%BF%E6%8D%A2%E5%8E%9F%E5%88%99"><span class="toc-number">4.7.3.</span> <span class="toc-text">「L」iskov Substitution Principle 里氏替换原则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E3%80%8CI%E3%80%8Dterface-Segregation-Principle-%E6%8E%A5%E5%8F%A3%E9%9A%94%E7%A6%BB%E5%8E%9F%E5%88%99"><span class="toc-number">4.7.4.</span> <span class="toc-text">「I」terface Segregation Principle 接口隔离原则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E3%80%8CD%E3%80%8Dependency-Inversion-Principle-%E4%BE%9D%E8%B5%96%E5%80%92%E7%BD%AE%E5%8E%9F%E5%88%99"><span class="toc-number">4.7.5.</span> <span class="toc-text">「D」ependency Inversion Principle 依赖倒置原则</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/%E9%98%9F%E5%88%97%E5%92%8C%E6%A0%88/" title="队列和栈"><img src="/posts/%E9%98%9F%E5%88%97%E5%92%8C%E6%A0%88/%E9%98%9F%E5%88%97%E5%92%8C%E6%A0%88_Cover.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="队列和栈"/></a><div class="content"><a class="title" href="/posts/%E9%98%9F%E5%88%97%E5%92%8C%E6%A0%88/" title="队列和栈">队列和栈</a><time datetime="2024-05-15T04:17:52.593Z" title="Updated 2024-05-15 00:17:52">2024-05-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/%E9%9D%A2%E8%AF%95%E7%BB%8F%E9%AA%8C%E9%9B%86%E5%90%88/" title="面试经验集合"><img src="/posts/%E9%9D%A2%E8%AF%95%E7%BB%8F%E9%AA%8C%E9%9B%86%E5%90%88/interview_cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="面试经验集合"/></a><div class="content"><a class="title" href="/posts/%E9%9D%A2%E8%AF%95%E7%BB%8F%E9%AA%8C%E9%9B%86%E5%90%88/" title="面试经验集合">面试经验集合</a><time datetime="2024-05-15T04:17:52.593Z" title="Updated 2024-05-15 00:17:52">2024-05-15</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By Ruobing Wang</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"></div><script type="text/javascript" src="https://cdn1.tianli0.top/npm/jquery@latest/dist/jquery.min.js"></script><script async src="/config/js/categoryBar.js"></script><script src="/js/nav.js"></script><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></body></html>
